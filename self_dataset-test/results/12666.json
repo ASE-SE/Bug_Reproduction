@@ -1,0 +1,73 @@
+{
+  "issue_number": 12666,
+  "repo": "TeamNewPipe/NewPipe",
+  "clone_ok": true,
+  "clone_msg": "repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)",
+  "timestamp": 1767773644.0221784,
+  "discard_local_changes": {
+    "reset": {
+      "rc": 0,
+      "stdout": "HEAD is now at 650b51ffec Merge pull request #12694 from mjsir911/m/on.soundcloud\n",
+      "stderr": ""
+    },
+    "clean": {
+      "rc": 0,
+      "stdout": "Removing .gradle/\n",
+      "stderr": ""
+    }
+  },
+  "requested_patch_commit": {},
+  "checkout_pre_patch_ok": false,
+  "checkout_pre_patch_msg": "no commit-related fields found in issue entry; left on default branch",
+  "checked_out_commit": null,
+  "build_system_detected": "gradle",
+  "prepare": {
+    "build_system": "gradle",
+    "actions": [
+      "preferred gradle dependencies rc=0"
+    ],
+    "last": {
+      "rc": 0,
+      "stdout": "\n> Task :dependencies\n\n------------------------------------------------------------\nRoot project 'TeamNewPipe_NewPipe'\n------------------------------------------------------------\n\nNo configurations\n\nA web-based, searchable dependency report is available by adding the --scan option.\n\nBUILD SUCCESSFUL in 3m 4s\n1 actionable task: 1 executed\n",
+      "stderr": ""
+    }
+  },
+  "api_ok": true,
+  "api_language": "java",
+  "path_hint_suggested": null,
+  "api_raw": {
+    "test_code": "package org.schabi.newpipe;\n\nimport androidx.test.ext.junit.runners.AndroidJUnit4;\nimport androidx.test.rule.ActivityTestRule;\nimport org.junit.Rule;\nimport org.junit.Test;\nimport org.junit.runner.RunWith;\nimport org.schabi.newpipe.activities.MainActivity;\n\n@RunWith(AndroidJUnit4.class)\npublic class CrashReproductionTest {\n\n    @Rule\n    public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);\n\n    @Test\n    public void testAppLaunchStability() throws Exception {\n        // Minimal test to trigger potential background crash\n        Thread.sleep(3000); // Wait to observe crash\n    }\n}",
+    "language": "java"
+  },
+  "test_written_files": [
+    {
+      "path": "src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java",
+      "content": "package org.schabi.newpipe;\n\nimport androidx.test.ext.junit.runners.AndroidJUnit4;\nimport androidx.test.rule.ActivityTestRule;\nimport org.junit.Rule;\nimport org.junit.Test;\nimport org.junit.runner.RunWith;\nimport org.schabi.newpipe.activities.MainActivity;\n\n@RunWith(AndroidJUnit4.class)\npublic class CrashReproductionTest {\n\n    @Rule\n    public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);\n\n    @Test\n    public void testAppLaunchStability() throws Exception {\n        // Minimal test to trigger potential background crash\n        Thread.sleep(3000); // Wait to observe crash\n    }\n}"
+    }
+  ],
+  "test_runs": [
+    {
+      "build_system": "gradle",
+      "steps": [
+        {
+          "cmd": "/root/gradle/gradle-8.13/bin/gradle test",
+          "rc": 1,
+          "stdout": "",
+          "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:testDebugUnitTest'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 1s\n"
+        }
+      ]
+    }
+  ],
+  "test_run_result": {
+    "build_system": "gradle",
+    "steps": [
+      {
+        "cmd": "/root/gradle/gradle-8.13/bin/gradle test",
+        "rc": 1,
+        "stdout": "",
+        "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:testDebugUnitTest'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 1s\n"
+      }
+    ]
+  },
+  "final_status": "potentially_triggered"
+}

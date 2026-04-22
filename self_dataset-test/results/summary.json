@@ -1,0 +1,174 @@
+{
+  "total": 374,
+  "processed": 0,
+  "results": [
+    {
+      "issue_number": 12763,
+      "repo": "TeamNewPipe/NewPipe",
+      "clone_ok": true,
+      "clone_msg": "repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)",
+      "timestamp": 1769160509.1047857,
+      "checkout_pre_patch_ok": false,
+      "checkout_pre_patch_msg": "exception during checkout_pre_patch_commit: name 'checkout_pre_patch_commit' is not defined",
+      "checked_out_commit": null,
+      "build_system_detected": "gradle",
+      "prepare": {
+        "build_system": "gradle",
+        "actions": [
+          "preferred gradle dependencies rc=0"
+        ],
+        "last": {
+          "rc": 0,
+          "stdout": "\n> Task :dependencies\n\n------------------------------------------------------------\nRoot project 'TeamNewPipe_NewPipe'\n------------------------------------------------------------\n\nNo configurations\n\nA web-based, searchable dependency report is available by adding the --scan option.\n\nBUILD SUCCESSFUL in 669ms\n1 actionable task: 1 executed\n",
+          "stderr": ""
+        }
+      },
+      "build_attempts": {
+        "build_system": "gradle",
+        "steps": [
+          {
+            "cmd": "/root/gradle/gradle-8.13/bin/gradle build -x test",
+            "rc": 1,
+            "stdout": "WARNING: The following problems were found when resolving the SDK location:\nWhere: sdk.dir property in local.properties file. Problem: Directory does not exist\n\n\n[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n",
+            "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:compileDebugJavaWithJavac'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 705ms\n"
+          },
+          {
+            "cmd": "/root/gradle/gradle-8.13/bin/gradle build -x test",
+            "rc": 1,
+            "stdout": "WARNING: The following problems were found when resolving the SDK location:\nWhere: sdk.dir property in local.properties file. Problem: Directory does not exist\n\n\n[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n",
+            "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:compileDebugJavaWithJavac'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 1s\n"
+          },
+          {
+            "cmd": "/root/gradle/gradle-8.13/bin/gradle build -x test",
+            "rc": 1,
+            "stdout": "WARNING: The following problems were found when resolving the SDK location:\nWhere: sdk.dir property in local.properties file. Problem: Directory does not exist\n\n\n[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n",
+            "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:compileDebugJavaWithJavac'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 1s\n"
+          }
+        ],
+        "fix_attempts": [
+          {
+            "ok": true,
+            "applied": [
+              "build.gradle.kts"
+            ]
+          },
+          {
+            "ok": true,
+            "applied": [
+              "build.gradle.kts"
+            ]
+          },
+          {
+            "ok": true,
+            "applied": [
+              "build.gradle.kts"
+            ]
+          }
+        ],
+        "final_success": false
+      },
+      "build_final_status": "failed",
+      "api_ok": true,
+      "api_language": "unknown",
+      "path_hint_suggested": null,
+      "api_raw": {
+        "files": [
+          {
+            "path": "settings.gradle.kts",
+            "content": "include(\":app\")\n\nincludeBuild('../NewPipeExtractor') {\n    dependencySubstitution {\n        substitute module('com.github.TeamNewPipe:NewPipeExtractor') using project(':extractor')\n    }\n}\n"
+          },
+          {
+            "path": "app/build.gradle.kts",
+            "content": "plugins {\n    id(\"java\")\n}\n"
+          }
+        ]
+      },
+      "final_status": "write_failed",
+      "write_error": "name 'get_gradle_cmd' is not defined"
+    },
+    {
+      "issue_number": 12763,
+      "repo": "TeamNewPipe/NewPipe",
+      "clone_ok": true,
+      "clone_msg": "repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)",
+      "timestamp": 1769160942.3870022,
+      "checkout_pre_patch_ok": false,
+      "checkout_pre_patch_msg": "exception during checkout_pre_patch_commit: name 'checkout_pre_patch_commit' is not defined",
+      "checked_out_commit": null,
+      "build_system_detected": "gradle",
+      "prepare": {
+        "build_system": "gradle",
+        "actions": [
+          "preferred gradle dependencies rc=0"
+        ],
+        "last": {
+          "rc": 0,
+          "stdout": "\n> Task :dependencies\n\n------------------------------------------------------------\nRoot project 'TeamNewPipe_NewPipe'\n------------------------------------------------------------\n\nNo configurations\n\nA web-based, searchable dependency report is available by adding the --scan option.\n\nBUILD SUCCESSFUL in 1s\n1 actionable task: 1 executed\n",
+          "stderr": ""
+        }
+      },
+      "build_attempts": {
+        "build_system": "gradle",
+        "steps": [
+          {
+            "cmd": "/root/gradle/gradle-8.13/bin/gradle build -x test",
+            "rc": 1,
+            "stdout": "WARNING: The following problems were found when resolving the SDK location:\nWhere: sdk.dir property in local.properties file. Problem: Directory does not exist\n\n\n[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n",
+            "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:compileDebugJavaWithJavac'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 700ms\n"
+          },
+          {
+            "cmd": "/root/gradle/gradle-8.13/bin/gradle build -x test",
+            "rc": 1,
+            "stdout": "WARNING: The following problems were found when resolving the SDK location:\nWhere: sdk.dir property in local.properties file. Problem: Directory does not exist\n\n\n[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n",
+            "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:compileDebugJavaWithJavac'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 706ms\n"
+          },
+          {
+            "cmd": "/root/gradle/gradle-8.13/bin/gradle build -x test",
+            "rc": 1,
+            "stdout": "WARNING: The following problems were found when resolving the SDK location:\nWhere: sdk.dir property in local.properties file. Problem: Directory does not exist\n\n\n[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n",
+            "stderr": "\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nCould not determine the dependencies of task ':app:compileDebugJavaWithJavac'.\n> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.\n\n* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --info or --debug option to get more log output.\n> Run with --scan to get full insights.\n> Get more help at https://help.gradle.org.\n\nBUILD FAILED in 687ms\n"
+          }
+        ],
+        "fix_attempts": [
+          {
+            "ok": true,
+            "applied": [
+              "local.properties"
+            ]
+          },
+          {
+            "ok": true,
+            "applied": [
+              "local.properties"
+            ]
+          },
+          {
+            "ok": true,
+            "applied": [
+              "build.gradle.kts"
+            ]
+          }
+        ],
+        "final_success": false
+      },
+      "build_final_status": "failed",
+      "api_ok": true,
+      "api_language": "unknown",
+      "path_hint_suggested": null,
+      "api_raw": {
+        "files": [
+          {
+            "path": "settings.gradle.kts",
+            "content": "rootProject.name = \"test\"\n\nincludeBuild('../NewPipeExtractor') {\n    dependencySubstitution {\n        substitute module('com.github.TeamNewPipe:NewPipeExtractor') using project(':extractor')\n    }\n}"
+          },
+          {
+            "path": "build.gradle.kts",
+            "content": "tasks.register(\"hello\") {\n    doLast {\n        println(\"Hello world!\")\n    }\n}"
+          }
+        ]
+      },
+      "final_status": "write_failed",
+      "write_error": "name 'get_gradle_cmd' is not defined"
+    }
+  ]
+}

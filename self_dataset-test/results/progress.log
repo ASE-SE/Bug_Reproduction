@@ -1,0 +1,1789 @@
+2026-01-07 11:50:37 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 11:50:37 INFO Using API model: deepseek-r1
+2026-01-07 11:50:37 INFO Filtering to issue ids: ['3579058994']
+2026-01-07 11:50:37 INFO INFO: --accept-compile-failure is set; compile/test compilation failures that resemble bug reproduction will be treated as triggers.
+2026-01-07 11:50:37 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 11:50:37 INFO [86/374] [12763] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 11:50:37 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 11:50:37 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 11:50:37 INFO Attempting git checkout 650b51ffec78a27df149a04f8dc017ae5d07dcce in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe ...
+2026-01-07 11:50:37 INFO CMD START: git checkout 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 11:50:37 INFO CMD FINISH: git checkout 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-07 11:50:37 INFO CMD STDOUT (truncated 2000): M	settings.gradle.kts
+
+2026-01-07 11:50:37 WARNING CMD STDERR (truncated 2000): HEAD is now at 650b51ffec Merge pull request #12694 from mjsir911/m/on.soundcloud
+
+2026-01-07 11:50:37 INFO   checkout_pre_patch: ok=True msg=checked out explicit pre-patch field pre_commit_sha checked=650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-07 11:50:37 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 11:50:37 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:00:37 WARNING CMD TIMEOUT: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies elapsed=600.0s
+2026-01-07 12:00:37 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['gradlew dependencies rc=-1']
+2026-01-07 12:00:37 INFO Calling test generation API ...
+2026-01-07 12:01:27 INFO API returned status 200 (response length 9102 chars)
+2026-01-07 12:01:27 INFO   wrote API-provided file: settings.gradle.kts
+2026-01-07 12:01:27 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:01:27 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts rc=0 elapsed=0.0s
+2026-01-07 12:01:27 INFO CMD START: git commit -m Add generated trigger test for issue 12763 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:01:27 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12763 rc=128 elapsed=0.0s
+2026-01-07 12:01:27 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 12:01:27 INFO Committed generated test files (if any changes).
+2026-01-07 12:01:27 INFO   Running test attempt 1/3 for issue 12763 ...
+2026-01-07 12:01:27 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 12:01:27 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:01:39 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test rc=1 elapsed=12.0s
+2026-01-07 12:01:39 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+
+2026-01-07 12:01:39 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:288)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:314)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:484)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:478)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1465)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1069)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:244)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:284)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at java.base/
+2026-01-07 12:01:39 INFO CMD START: /usr/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:01:40 INFO CMD FINISH: /usr/bin/gradle test rc=1 elapsed=0.8s
+2026-01-07 12:01:40 WARNING CMD STDERR (truncated 2000): openjdk version "17.0.17" 2025-10-21
+OpenJDK Runtime Environment (build 17.0.17+10-Ubuntu-124.04)
+OpenJDK 64-Bit Server VM (build 17.0.17+10-Ubuntu-124.04, mixed mode, sharing)
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Task 'test' not found in root project 'TeamNewPipe_NewPipe'.
+
+* Try:
+Run gradle tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 0s
+
+2026-01-07 12:01:40 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 2
+2026-01-07 12:01:40 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 12:01:40 INFO   test run status for issue 12763: potentially_triggered
+2026-01-07 12:01:40 INFO [87/374] [12763] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 12:01:40 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 12:01:40 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 12:01:40 INFO Attempting git checkout 650b51ffec78a27df149a04f8dc017ae5d07dcce in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe ...
+2026-01-07 12:01:40 INFO CMD START: git checkout 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:01:40 INFO CMD FINISH: git checkout 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-07 12:01:40 INFO CMD STDOUT (truncated 2000): M	settings.gradle.kts
+
+2026-01-07 12:01:40 WARNING CMD STDERR (truncated 2000): HEAD is now at 650b51ffec Merge pull request #12694 from mjsir911/m/on.soundcloud
+
+2026-01-07 12:01:40 INFO   checkout_pre_patch: ok=True msg=checked out explicit pre-patch field pre_commit_sha checked=650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-07 12:01:40 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 12:01:40 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:01:51 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies rc=1 elapsed=11.0s
+2026-01-07 12:01:51 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+
+2026-01-07 12:01:51 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Connect timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:551)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:178)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266)
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:193)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1262)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection
+2026-01-07 12:01:51 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['gradlew dependencies rc=1']
+2026-01-07 12:01:51 INFO Calling test generation API ...
+2026-01-07 12:02:27 INFO API returned status 200 (response length 6428 chars)
+2026-01-07 12:02:27 INFO   wrote API-provided file: settings.gradle.kts
+2026-01-07 12:02:27 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:02:27 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts rc=0 elapsed=0.0s
+2026-01-07 12:02:27 INFO CMD START: git commit -m Add generated trigger test for issue 12763 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:02:28 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12763 rc=128 elapsed=0.0s
+2026-01-07 12:02:28 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 12:02:28 INFO Committed generated test files (if any changes).
+2026-01-07 12:02:28 INFO   Running test attempt 1/3 for issue 12763 ...
+2026-01-07 12:02:28 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 12:02:28 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:02:40 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test rc=1 elapsed=12.1s
+2026-01-07 12:02:40 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+
+2026-01-07 12:02:40 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Connect timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:551)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:178)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266)
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:193)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1262)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection
+2026-01-07 12:02:40 INFO CMD START: /usr/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 12:02:40 INFO CMD FINISH: /usr/bin/gradle test rc=1 elapsed=0.8s
+2026-01-07 12:02:40 WARNING CMD STDERR (truncated 2000): openjdk version "17.0.17" 2025-10-21
+OpenJDK Runtime Environment (build 17.0.17+10-Ubuntu-124.04)
+OpenJDK 64-Bit Server VM (build 17.0.17+10-Ubuntu-124.04, mixed mode, sharing)
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Task 'test' not found in root project 'TeamNewPipe_NewPipe'.
+
+* Try:
+Run gradle tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 0s
+
+2026-01-07 12:02:40 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 2
+2026-01-07 12:02:40 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 12:02:40 INFO   test run status for issue 12763: potentially_triggered
+2026-01-07 12:02:40 INFO Done. Results saved to results/ directory.
+2026-01-07 12:02:40 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 13:03:15 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 13:03:15 INFO Using API model: deepseek-r1
+2026-01-07 13:03:15 INFO Filtering to issue ids: ['3519886443']
+2026-01-07 13:03:15 INFO INFO: --accept-compile-failure is set; compile/test compilation failures that resemble bug reproduction will be treated as triggers.
+2026-01-07 13:03:15 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 13:03:15 INFO [92/374] [12708] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 13:03:15 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 13:03:15 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 13:03:15 INFO   checkout_pre_patch: ok=False msg=no commit-related fields found in issue entry; left on default branch checked=None
+2026-01-07 13:03:15 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 13:03:15 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:03:28 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies rc=1 elapsed=12.6s
+2026-01-07 13:03:28 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+
+2026-01-07 13:03:28 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Connect timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:551)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:178)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266)
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:193)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1262)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection
+2026-01-07 13:03:28 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['gradlew dependencies rc=1']
+2026-01-07 13:03:28 INFO Calling test generation API ...
+2026-01-07 13:06:18 INFO API returned status 200 (response length 33564 chars)
+2026-01-07 13:06:18 INFO   wrote API-provided file: src/test/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSourceTest.java
+2026-01-07 13:06:18 INFO   wrote API-provided file: src/main/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSource.java
+2026-01-07 13:06:18 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSourceTest.java /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/main/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSource.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:06:18 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSourceTest.java /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/main/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSource.java rc=0 elapsed=0.0s
+2026-01-07 13:06:18 INFO CMD START: git commit -m Add generated trigger test for issue 12708 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:06:18 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12708 rc=128 elapsed=0.0s
+2026-01-07 13:06:18 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 13:06:18 INFO Committed generated test files (if any changes).
+2026-01-07 13:06:18 INFO   Running test attempt 1/3 for issue 12708 ...
+2026-01-07 13:06:18 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 13:06:18 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:16:18 WARNING CMD TIMEOUT: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test elapsed=600.0s
+2026-01-07 13:16:18 INFO CMD START: /usr/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:16:18 INFO CMD FINISH: /usr/bin/gradle test rc=1 elapsed=0.8s
+2026-01-07 13:16:18 WARNING CMD STDERR (truncated 2000): openjdk version "17.0.17" 2025-10-21
+OpenJDK Runtime Environment (build 17.0.17+10-Ubuntu-124.04)
+OpenJDK 64-Bit Server VM (build 17.0.17+10-Ubuntu-124.04, mixed mode, sharing)
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Task 'test' not found in root project 'TeamNewPipe_NewPipe'.
+
+* Try:
+Run gradle tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 0s
+
+2026-01-07 13:16:18 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 2
+2026-01-07 13:16:18 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 13:16:18 INFO   test run status for issue 12708: potentially_triggered
+2026-01-07 13:16:18 INFO Done. Results saved to results/ directory.
+2026-01-07 13:16:18 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 13:43:58 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 13:43:58 INFO Using API model: deepseek-r1
+2026-01-07 13:43:58 INFO Filtering to issue ids: ['3519886443']
+2026-01-07 13:43:58 INFO INFO: --accept-compile-failure is set; compile/test compilation failures that resemble bug reproduction will be treated as triggers.
+2026-01-07 13:43:58 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 13:43:58 INFO [92/374] [12708] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 13:43:58 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 13:43:58 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 13:43:58 INFO   checkout_pre_patch: ok=False msg=no commit-related fields found in issue entry; left on default branch checked=None
+2026-01-07 13:43:58 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 13:43:58 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:44:10 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies rc=1 elapsed=12.6s
+2026-01-07 13:44:10 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+
+2026-01-07 13:44:10 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:288)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:314)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:484)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:478)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1465)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1069)
+	at java.base/java.io.BufferedInputStream.fill(BufferedInputStream.java:244)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:284)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at java.base/
+2026-01-07 13:44:10 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['gradlew dependencies rc=1']
+2026-01-07 13:44:10 INFO Calling test generation API ...
+2026-01-07 13:45:40 INFO API returned status 200 (response length 18292 chars)
+2026-01-07 13:45:40 INFO Wrote test file: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/GeneratedTriggerTest_issue12708.java
+2026-01-07 13:45:40 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/GeneratedTriggerTest_issue12708.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:45:40 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/GeneratedTriggerTest_issue12708.java rc=0 elapsed=0.0s
+2026-01-07 13:45:40 INFO CMD START: git commit -m Add generated trigger test for issue 12708 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:45:40 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12708 rc=128 elapsed=0.0s
+2026-01-07 13:45:40 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 13:45:40 INFO Committed generated test files (if any changes).
+2026-01-07 13:45:40 INFO   Running test attempt 1/3 for issue 12708 ...
+2026-01-07 13:45:40 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 13:45:40 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:55:40 WARNING CMD TIMEOUT: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test elapsed=600.0s
+2026-01-07 13:55:40 INFO Using local Gradle at /opt/gradle/gradle-8.13/bin/gradle
+2026-01-07 13:55:40 INFO CMD START: /opt/gradle/gradle-8.13/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 13:55:56 INFO CMD FINISH: /opt/gradle/gradle-8.13/bin/gradle test rc=1 elapsed=16.1s
+2026-01-07 13:55:56 INFO CMD STDOUT (truncated 2000): 
+Welcome to Gradle 8.13!
+
+Here are the highlights of this release:
+ - Daemon JVM auto-provisioning
+ - Enhancements for Scala plugin and JUnit testing
+ - Improvements for build authors and plugin developers
+
+For more details see https://docs.gradle.org/8.13/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+2026-01-07 13:55:56 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases/repos/T
+2026-01-07 13:55:56 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 2
+2026-01-07 13:55:56 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 13:55:56 INFO   test run status for issue 12708: potentially_triggered
+2026-01-07 13:55:56 INFO Done. Results saved to results/ directory.
+2026-01-07 13:55:56 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 15:37:00 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 15:37:00 INFO Using API model: deepseek-r1
+2026-01-07 15:37:00 INFO Filtering to issue ids: ['3519886443']
+2026-01-07 15:37:00 INFO INFO: --accept-compile-failure is set; compile/test compilation failures that resemble bug reproduction will be treated as triggers.
+2026-01-07 15:37:00 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 15:37:00 INFO [92/374] [12708] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 15:37:00 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 15:37:00 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 15:37:00 INFO   checkout_pre_patch: ok=False msg=no commit-related fields found in issue entry; left on default branch checked=None
+2026-01-07 15:37:00 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 15:37:00 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 15:38:11 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew dependencies rc=1 elapsed=71.5s
+2026-01-07 15:38:11 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+
+2026-01-07 15:38:11 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:288)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:314)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:484)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readFully(SSLSocketInputRecord.java:467)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decodeInputRecord(SSLSocketInputRecord.java:243)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:181)
+	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:111)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1513)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1484)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1069)
+	at java.
+2026-01-07 15:38:11 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['gradlew dependencies rc=1']
+2026-01-07 15:38:11 INFO Calling test generation API ...
+2026-01-07 15:39:35 INFO API returned status 200 (response length 14387 chars)
+2026-01-07 15:39:35 INFO   wrote API-provided file: src/test/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSourceTest.java
+2026-01-07 15:39:35 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSourceTest.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 15:39:35 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/datasource/YoutubeHttpDataSourceTest.java rc=0 elapsed=0.0s
+2026-01-07 15:39:35 INFO CMD START: git commit -m Add generated trigger test for issue 12708 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 15:39:35 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12708 rc=128 elapsed=0.0s
+2026-01-07 15:39:35 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 15:39:35 INFO Committed generated test files (if any changes).
+2026-01-07 15:39:35 INFO   Running test attempt 1/3 for issue 12708 ...
+2026-01-07 15:39:35 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 15:39:35 INFO CMD START: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 15:47:43 INFO CMD FINISH: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/gradlew test rc=1 elapsed=488.1s
+2026-01-07 15:47:43 INFO CMD STDOUT (truncated 2000): Downloading https://services.gradle.org/distributions/gradle-8.13-bin.zip
+......
+
+2026-01-07 15:47:43 WARNING CMD STDERR (truncated 2000): Exception in thread "main" java.io.IOException: Downloading from https://services.gradle.org/distributions/gradle-8.13-bin.zip failed: timeout (10000ms)
+	at org.gradle.wrapper.Download.downloadInternal(Download.java:131)
+	at org.gradle.wrapper.Download.download(Download.java:89)
+	at org.gradle.wrapper.Install.forceFetch(Install.java:171)
+	at org.gradle.wrapper.Install.fetchDistribution(Install.java:104)
+	at org.gradle.wrapper.Install.access$400(Install.java:46)
+	at org.gradle.wrapper.Install$1.call(Install.java:81)
+	at org.gradle.wrapper.Install$1.call(Install.java:68)
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+	at org.gradle.wrapper.Install.createDist(Install.java:68)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:109)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:66)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:288)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:314)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:484)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readFully(SSLSocketInputRecord.java:467)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decodeInputRecord(SSLSocketInputRecord.java:243)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:181)
+	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:111)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1513)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1484)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1069)
+	at java.
+2026-01-07 15:47:43 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 15:47:43 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 15:47:44 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle test rc=1 elapsed=1.0s
+2026-01-07 15:47:44 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases/repos/T
+2026-01-07 15:47:44 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 2
+2026-01-07 15:47:44 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 15:47:44 INFO   test run status for issue 12708: potentially_triggered
+2026-01-07 15:47:44 INFO Done. Results saved to results/ directory.
+2026-01-07 15:47:44 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 15:58:49 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 15:58:49 INFO Using API model: deepseek-r1
+2026-01-07 15:58:49 INFO Filtering to issue ids: ['3519886443']
+2026-01-07 15:58:49 INFO INFO: --accept-compile-failure is set; compile/test compilation failures that resemble bug reproduction will be treated as triggers.
+2026-01-07 15:58:49 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 15:58:49 INFO [92/374] [12708] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 15:58:49 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 15:58:49 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 15:58:49 INFO   checkout_pre_patch: ok=False msg=no commit-related fields found in issue entry; left on default branch checked=None
+2026-01-07 15:58:49 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 15:58:49 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 15:58:49 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 15:58:51 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=1 elapsed=1.4s
+2026-01-07 15:58:51 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases/repos/T
+2026-01-07 15:58:51 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=1']
+2026-01-07 15:58:51 INFO Calling test generation API ...
+2026-01-07 16:00:12 INFO API returned status 200 (response length 14065 chars)
+2026-01-07 16:00:12 INFO Wrote test file: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/GeneratedTriggerTest_issue12708.java
+2026-01-07 16:00:12 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/GeneratedTriggerTest_issue12708.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:00:12 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/player/GeneratedTriggerTest_issue12708.java rc=0 elapsed=0.0s
+2026-01-07 16:00:12 INFO CMD START: git commit -m Add generated trigger test for issue 12708 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:00:12 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12708 rc=128 elapsed=0.0s
+2026-01-07 16:00:12 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:00:12 INFO Committed generated test files (if any changes).
+2026-01-07 16:00:12 INFO   Running test attempt 1/3 for issue 12708 ...
+2026-01-07 16:00:12 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 16:00:12 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:00:12 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:00:13 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle test rc=1 elapsed=0.9s
+2026-01-07 16:00:13 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases/repos/T
+2026-01-07 16:00:13 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 1
+2026-01-07 16:00:13 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 16:00:13 INFO   test run status for issue 12708: potentially_triggered
+2026-01-07 16:00:13 INFO Done. Results saved to results/ directory.
+2026-01-07 16:00:13 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 16:11:36 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 16:11:36 INFO Using API model: deepseek-r1
+2026-01-07 16:11:36 INFO Filtering to issue ids: ['3461429796']
+2026-01-07 16:11:36 INFO INFO: --accept-compile-failure is set; compile/test compilation failures that resemble bug reproduction will be treated as triggers.
+2026-01-07 16:11:36 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 16:11:36 INFO [99/374] [12666] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 16:11:36 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 16:11:36 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 16:11:36 INFO   checkout_pre_patch: ok=False msg=no commit-related fields found in issue entry; left on default branch checked=None
+2026-01-07 16:11:36 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 16:11:36 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:11:36 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:11:37 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=1 elapsed=1.0s
+2026-01-07 16:11:37 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases/repos/T
+2026-01-07 16:11:37 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=1']
+2026-01-07 16:11:37 INFO Calling test generation API ...
+2026-01-07 16:12:46 INFO API returned status 200 (response length 12275 chars)
+2026-01-07 16:12:46 INFO Wrote test file: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java
+2026-01-07 16:12:46 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:12:46 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java rc=0 elapsed=0.0s
+2026-01-07 16:12:46 INFO CMD START: git commit -m Add generated trigger test for issue 12666 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:12:46 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12666 rc=128 elapsed=0.0s
+2026-01-07 16:12:46 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:12:46 INFO Committed generated test files (if any changes).
+2026-01-07 16:12:46 INFO   Running test attempt 1/3 for issue 12666 ...
+2026-01-07 16:12:46 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 16:12:46 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:12:46 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:12:47 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle test rc=1 elapsed=0.9s
+2026-01-07 16:12:47 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases/repos/T
+2026-01-07 16:12:47 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 1
+2026-01-07 16:12:47 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 16:12:47 INFO   test run status for issue 12666: potentially_triggered
+2026-01-07 16:12:47 INFO Done. Results saved to results/ directory.
+2026-01-07 16:12:47 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 16:14:03 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 16:14:03 INFO Using API model: deepseek-r1
+2026-01-07 16:14:03 INFO Filtering to issue ids: ['3461429796']
+2026-01-07 16:14:03 WARNING WARNING: --discard-local-changes is set; the script will run git reset --hard and git clean -fdx on existing repos (destructive).
+2026-01-07 16:14:04 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 16:14:04 INFO [99/374] [12666] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 16:14:04 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 16:14:04 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 16:14:04 INFO Discarding local changes in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (git reset --hard; git clean -fdx) ...
+2026-01-07 16:14:04 INFO CMD START: git reset --hard (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:14:04 INFO CMD FINISH: git reset --hard rc=0 elapsed=0.0s
+2026-01-07 16:14:04 INFO CMD STDOUT (truncated 2000): HEAD is now at 650b51ffec Merge pull request #12694 from mjsir911/m/on.soundcloud
+
+2026-01-07 16:14:04 INFO CMD START: git clean -fdx (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:14:04 INFO CMD FINISH: git clean -fdx rc=0 elapsed=0.0s
+2026-01-07 16:14:04 INFO CMD STDOUT (truncated 2000): Removing .gradle/
+
+2026-01-07 16:14:04 INFO Discard result reset.rc=0 clean.rc=0
+2026-01-07 16:14:04 INFO   discard_local_changes: reset rc=0 clean rc=0
+2026-01-07 16:14:04 INFO   checkout_pre_patch: ok=False msg=no commit-related fields found in issue entry; left on default branch checked=None
+2026-01-07 16:14:04 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 16:14:04 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:14:04 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:17:09 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=185.2s
+2026-01-07 16:17:09 INFO CMD STDOUT (truncated 2000): 
+> Task :dependencies
+
+------------------------------------------------------------
+Root project 'TeamNewPipe_NewPipe'
+------------------------------------------------------------
+
+No configurations
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 3m 4s
+1 actionable task: 1 executed
+
+2026-01-07 16:17:09 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=0']
+2026-01-07 16:17:09 INFO Calling test generation API ...
+2026-01-07 16:18:14 INFO API returned status 200 (response length 11812 chars)
+2026-01-07 16:18:14 INFO Wrote test file: /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java
+2026-01-07 16:18:14 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:18:14 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java rc=0 elapsed=0.0s
+2026-01-07 16:18:14 INFO CMD START: git commit -m Add generated trigger test for issue 12666 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:18:14 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12666 rc=128 elapsed=0.0s
+2026-01-07 16:18:14 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:18:14 INFO Committed generated test files (if any changes).
+2026-01-07 16:18:14 INFO   Running test attempt 1/3 for issue 12666 ...
+2026-01-07 16:18:14 INFO Running tests in /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 16:18:14 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:18:14 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:18:15 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle test rc=1 elapsed=1.8s
+2026-01-07 16:18:15 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:testDebugUnitTest'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+
+2026-01-07 16:18:15 INFO Test run finished for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe; steps recorded: 1
+2026-01-07 16:18:15 INFO   No explicit failing Java files found; marking potentially_triggered.
+2026-01-07 16:18:15 INFO   test run status for issue 12666: potentially_triggered
+2026-01-07 16:18:15 INFO Done. Results saved to results/ directory.
+2026-01-07 16:18:15 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-07 16:24:15 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-07 16:24:15 INFO Using API model: deepseek-r1
+2026-01-07 16:24:15 INFO Filtering to issue ids: ['3519886443']
+2026-01-07 16:24:15 INFO Loaded 374 issues from /root/bug-report2-test-cases/issues_commits.json
+2026-01-07 16:24:15 INFO [92/374] [12708] Processing repo TeamNewPipe/NewPipe ...
+2026-01-07 16:24:15 INFO repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 16:24:15 INFO   clone: repo already exists at /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-07 16:24:15 WARNING   checkout_pre_patch failed: name 'checkout_pre_patch_commit' is not defined
+2026-01-07 16:24:15 INFO Preparing build environment for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-07 16:24:15 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:24:15 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:24:16 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=1.3s
+2026-01-07 16:24:16 INFO CMD STDOUT (truncated 2000): 
+> Task :dependencies
+
+------------------------------------------------------------
+Root project 'TeamNewPipe_NewPipe'
+------------------------------------------------------------
+
+No configurations
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 908ms
+1 actionable task: 1 executed
+
+2026-01-07 16:24:16 INFO Preparation complete for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=0']
+2026-01-07 16:24:16 INFO Attempting build for /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-07 16:24:16 INFO   Build attempt 1/3 ...
+2026-01-07 16:24:16 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:24:16 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:24:17 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=1.4s
+2026-01-07 16:24:17 INFO CMD STDOUT (truncated 2000): 
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-07 16:24:17 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+
+2026-01-07 16:24:17 INFO   Detected failing files for auto-fix: []
+2026-01-07 16:24:17 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-07 16:24:17 INFO Calling auto-fix API ...
+2026-01-07 16:24:51 INFO Auto-fix API returned status 200 (response length 6961 chars)
+2026-01-07 16:24:51 INFO   Applied patch file: local.properties
+2026-01-07 16:24:51 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:24:51 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-07 16:24:51 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-07 16:24:51 INFO CMD START: git commit -m Auto-applied build fixes attempt 1 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:24:51 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 1 rc=128 elapsed=0.0s
+2026-01-07 16:24:51 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:24:51 INFO   Committed applied patches: ['local.properties']
+2026-01-07 16:24:51 INFO   Build attempt 2/3 ...
+2026-01-07 16:24:51 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:24:51 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:24:52 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=1.0s
+2026-01-07 16:24:52 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-07 16:24:52 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 847ms
+
+2026-01-07 16:24:52 INFO   Detected failing files for auto-fix: []
+2026-01-07 16:24:52 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-07 16:24:52 INFO Calling auto-fix API ...
+2026-01-07 16:25:23 INFO Auto-fix API returned status 200 (response length 5526 chars)
+2026-01-07 16:25:23 INFO   Applied patch file: local.properties
+2026-01-07 16:25:23 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:25:23 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-07 16:25:23 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-07 16:25:23 INFO CMD START: git commit -m Auto-applied build fixes attempt 2 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:25:23 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 2 rc=128 elapsed=0.0s
+2026-01-07 16:25:23 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:25:23 INFO   Committed applied patches: ['local.properties']
+2026-01-07 16:25:23 INFO   Build attempt 3/3 ...
+2026-01-07 16:25:23 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-07 16:25:23 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:25:24 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=0.9s
+2026-01-07 16:25:24 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-07 16:25:24 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 808ms
+
+2026-01-07 16:25:24 INFO   Detected failing files for auto-fix: []
+2026-01-07 16:25:24 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-07 16:25:24 INFO Calling auto-fix API ...
+2026-01-07 16:26:26 INFO Auto-fix API returned status 200 (response length 10799 chars)
+2026-01-07 16:26:26 INFO   Applied patch file: local.properties
+2026-01-07 16:26:26 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:26:26 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-07 16:26:26 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-07 16:26:26 INFO CMD START: git commit -m Auto-applied build fixes attempt 3 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:26:26 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 3 rc=128 elapsed=0.0s
+2026-01-07 16:26:26 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:26:26 INFO   Committed applied patches: ['local.properties']
+2026-01-07 16:26:26 WARNING Build attempts exhausted; final_success=False
+2026-01-07 16:26:26 WARNING   Build stage: FAILED for TeamNewPipe/NewPipe (attempts made); proceeding to generate test regardless as requested.
+2026-01-07 16:26:26 INFO Calling test generation API ...
+2026-01-07 16:28:24 INFO API returned status 200 (response length 22718 chars)
+2026-01-07 16:28:24 INFO   wrote API-provided file: Player403Test.java
+2026-01-07 16:28:24 INFO CMD START: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/Player403Test.java (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:28:24 INFO CMD FINISH: git add /root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe/Player403Test.java rc=0 elapsed=0.0s
+2026-01-07 16:28:24 INFO CMD START: git commit -m Add generated trigger test for issue 12708 (cwd=/root/bug-report2-test-cases/repos/TeamNewPipe_NewPipe)
+2026-01-07 16:28:24 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12708 rc=128 elapsed=0.0s
+2026-01-07 16:28:24 WARNING CMD STDERR (truncated 2000): Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@ecs-590d.(none)')
+
+2026-01-07 16:28:24 INFO Committed generated test files (if any changes).
+2026-01-07 16:28:24 INFO Done. Results saved to results/ directory.
+2026-01-07 16:28:24 INFO Aggregated generated tests: /root/bug-report2-test-cases/results/generated_tests.json
+2026-01-23 15:29:12 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-23 15:29:12 INFO Using API model: deepseek-r1
+2026-01-23 15:29:12 INFO Filtering to issue ids: ['3579058994']
+2026-01-23 15:29:12 INFO Loaded 374 issues from /root/bug-report2-test-cases2/issues_commits.json
+2026-01-23 15:29:12 INFO [86/374] [12763] Processing repo TeamNewPipe/NewPipe ...
+2026-01-23 15:29:12 INFO repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 15:29:12 INFO   clone: repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 15:29:12 WARNING   checkout_pre_patch failed: name 'checkout_pre_patch_commit' is not defined
+2026-01-23 15:29:12 INFO Preparing build environment for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-23 15:29:12 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:29:12 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:29:30 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=18.4s
+2026-01-23 15:29:30 INFO CMD STDOUT (truncated 2000): Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :dependencies
+
+------------------------------------------------------------
+Root project 'TeamNewPipe_NewPipe'
+------------------------------------------------------------
+
+No configurations
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 17s
+1 actionable task: 1 executed
+
+2026-01-23 15:29:30 INFO Preparation complete for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=0']
+2026-01-23 15:29:30 INFO Attempting build for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-23 15:29:30 INFO   Build attempt 1/3 ...
+2026-01-23 15:29:30 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:29:30 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:29:33 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=2.2s
+2026-01-23 15:29:33 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 15:29:33 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+
+2026-01-23 15:29:33 INFO   Detected failing files for auto-fix: []
+2026-01-23 15:29:33 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 15:29:33 INFO Calling auto-fix API ...
+2026-01-23 15:30:49 INFO Auto-fix API returned status 200 (response length 14797 chars)
+2026-01-23 15:30:49 INFO   Applied patch file: local.properties
+2026-01-23 15:30:49 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:30:49 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-23 15:30:49 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-23 15:30:49 INFO CMD START: git commit -m Auto-applied build fixes attempt 1 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:30:49 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 1 rc=0 elapsed=0.0s
+2026-01-23 15:30:49 INFO CMD STDOUT (truncated 2000): [detached HEAD 09b100f8d6] Auto-applied build fixes attempt 1
+ 2 files changed, 54 insertions(+)
+ create mode 100644 Player403Test.java
+ create mode 100644 src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12666.java
+
+2026-01-23 15:30:49 INFO   Committed applied patches: ['local.properties']
+2026-01-23 15:30:49 INFO   Build attempt 2/3 ...
+2026-01-23 15:30:49 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:30:49 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:30:50 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=1.0s
+2026-01-23 15:30:50 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 15:30:50 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 841ms
+
+2026-01-23 15:30:50 INFO   Detected failing files for auto-fix: []
+2026-01-23 15:30:50 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 15:30:50 INFO Calling auto-fix API ...
+2026-01-23 15:32:44 INFO Auto-fix API returned status 200 (response length 21259 chars)
+2026-01-23 15:32:44 INFO   Applied patch file: build.gradle.kts
+2026-01-23 15:32:44 INFO CMD START: git add build.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:32:44 INFO CMD FINISH: git add build.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 15:32:44 INFO CMD START: git commit -m Auto-applied build fixes attempt 2 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:32:44 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 2 rc=0 elapsed=0.0s
+2026-01-23 15:32:44 INFO CMD STDOUT (truncated 2000): [detached HEAD f9d7543a6a] Auto-applied build fixes attempt 2
+ 1 file changed, 10 insertions(+)
+
+2026-01-23 15:32:44 INFO   Committed applied patches: ['build.gradle.kts']
+2026-01-23 15:32:44 INFO   Build attempt 3/3 ...
+2026-01-23 15:32:44 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:32:44 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:32:51 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=6.8s
+2026-01-23 15:32:51 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 15:32:51 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 6s
+
+2026-01-23 15:32:51 INFO   Detected failing files for auto-fix: []
+2026-01-23 15:32:51 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 15:32:51 INFO Calling auto-fix API ...
+2026-01-23 15:34:01 INFO Auto-fix API returned status 200 (response length 12344 chars)
+2026-01-23 15:34:01 INFO   Applied patch file: local.properties
+2026-01-23 15:34:01 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:34:01 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-23 15:34:01 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-23 15:34:01 INFO CMD START: git commit -m Auto-applied build fixes attempt 3 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:34:01 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 3 rc=1 elapsed=0.0s
+2026-01-23 15:34:01 INFO CMD STDOUT (truncated 2000): HEAD detached from 650b51ffec
+nothing to commit, working tree clean
+
+2026-01-23 15:34:01 INFO   Committed applied patches: ['local.properties']
+2026-01-23 15:34:01 WARNING Build attempts exhausted; final_success=False
+2026-01-23 15:34:01 WARNING   Build stage: FAILED for TeamNewPipe/NewPipe (attempts made); proceeding to generate test regardless as requested.
+2026-01-23 15:34:01 INFO Calling test generation API ...
+2026-01-23 15:34:37 INFO API returned status 200 (response length 7051 chars)
+2026-01-23 15:34:37 INFO   wrote API-provided file: settings.gradle.kts
+2026-01-23 15:34:37 INFO CMD START: git add /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:34:37 INFO CMD FINISH: git add /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 15:34:37 INFO CMD START: git commit -m Add generated trigger test for issue 12763 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:34:37 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12763 rc=0 elapsed=0.0s
+2026-01-23 15:34:37 INFO CMD STDOUT (truncated 2000): [detached HEAD f388c5fbe3] Add generated trigger test for issue 12763
+ 1 file changed, 4 insertions(+), 31 deletions(-)
+
+2026-01-23 15:34:37 INFO Committed generated test files (if any changes).
+2026-01-23 15:34:37 INFO [87/374] [12763] Processing repo TeamNewPipe/NewPipe ...
+2026-01-23 15:34:37 INFO repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 15:34:37 INFO   clone: repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 15:34:37 WARNING   checkout_pre_patch failed: name 'checkout_pre_patch_commit' is not defined
+2026-01-23 15:34:37 INFO Preparing build environment for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-23 15:34:37 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:34:37 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:34:39 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=1 elapsed=1.1s
+2026-01-23 15:34:39 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases2
+2026-01-23 15:34:39 INFO Preparation complete for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=1']
+2026-01-23 15:34:39 INFO Attempting build for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-23 15:34:39 INFO   Build attempt 1/3 ...
+2026-01-23 15:34:39 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:34:39 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:34:40 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=1.1s
+2026-01-23 15:34:40 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:1:14: Too many characters in a character literal ''../NewPipeExtractor''
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: Function invocation 'substitute(...)' expected
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:9: No value passed for parameter 'substitutedDependency'
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:20: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+public fun Dependencies.module(group: String?, name: String, version: String?): ExternalModuleDependency defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(notation: Any, clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ...): ClientModule defined in org.gradle.kotlin.dsl
+public fun DependencyHandler.module(group: String, name: String, version: String? = ..., configuration: String? = ..., classifier: String? = ..., ext: String? = ..., clientModuleConfiguration: ClientModuleScope.() -> Unit): ClientModule defined in org.gradle.kotlin.dsl
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:27: Too many characters in a character literal ''com.github.TeamNewPipe:NewPipeExtractor''
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: The character literal does not conform to the expected type String!
+e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:84: Too many characters in a character literal '':extractor''
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases2
+2026-01-23 15:34:40 INFO   Detected failing files for auto-fix: []
+2026-01-23 15:34:40 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 15:34:40 INFO Calling auto-fix API ...
+2026-01-23 15:35:56 INFO Auto-fix API returned status 200 (response length 15143 chars)
+2026-01-23 15:35:56 INFO   Applied patch file: settings.gradle.kts
+2026-01-23 15:35:56 INFO CMD START: git add settings.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:35:56 INFO CMD FINISH: git add settings.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 15:35:56 INFO CMD START: git commit -m Auto-applied build fixes attempt 1 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:35:56 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 1 rc=0 elapsed=0.0s
+2026-01-23 15:35:56 INFO CMD STDOUT (truncated 2000): [detached HEAD 5b57d214bd] Auto-applied build fixes attempt 1
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+2026-01-23 15:35:56 INFO   Committed applied patches: ['settings.gradle.kts']
+2026-01-23 15:35:56 INFO   Build attempt 2/3 ...
+2026-01-23 15:35:56 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 15:35:56 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:35:56 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=0.8s
+2026-01-23 15:35:56 WARNING CMD STDERR (truncated 2000): e: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts:3:71: Unresolved reference: with
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts' line: 3
+
+* What went wrong:
+Script compilation error:
+
+  Line 3:         substitute(module("com.github.TeamNewPipe:NewPipeExtractor")) with project(":extractor")
+                                                                                ^ Unresolved reference: with
+
+1 error
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 697ms
+
+2026-01-23 15:35:56 INFO   Detected failing files for auto-fix: []
+2026-01-23 15:35:56 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 15:35:56 INFO Calling auto-fix API ...
+2026-01-23 15:37:18 INFO Auto-fix API returned status 200 (response length 15470 chars)
+2026-01-23 15:37:18 INFO   Auto-fix API returned no files to apply.
+2026-01-23 15:37:18 WARNING Build attempts exhausted; final_success=False
+2026-01-23 15:37:18 WARNING   Build stage: FAILED for TeamNewPipe/NewPipe (attempts made); proceeding to generate test regardless as requested.
+2026-01-23 15:37:18 INFO Calling test generation API ...
+2026-01-23 15:37:55 INFO API returned status 200 (response length 7083 chars)
+2026-01-23 15:37:55 INFO   wrote API-provided file: settings.gradle.kts
+2026-01-23 15:37:55 INFO CMD START: git add /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:37:55 INFO CMD FINISH: git add /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/settings.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 15:37:55 INFO CMD START: git commit -m Add generated trigger test for issue 12763 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 15:37:55 INFO CMD FINISH: git commit -m Add generated trigger test for issue 12763 rc=0 elapsed=0.0s
+2026-01-23 15:37:55 INFO CMD STDOUT (truncated 2000): [detached HEAD 990cd2a774] Add generated trigger test for issue 12763
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+2026-01-23 15:37:55 INFO Committed generated test files (if any changes).
+2026-01-23 15:37:55 INFO Done. Results saved to results/ directory.
+2026-01-23 15:37:55 INFO Aggregated generated tests: /root/bug-report2-test-cases2/results/generated_tests.json
+2026-01-23 15:58:36 INFO Processing None Issue 3579058994
+2026-01-23 16:26:30 INFO Processing None Issue 12763
+2026-01-23 16:32:28 INFO Processing None Issue 12763
+2026-01-23 16:38:48 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 16:38:48 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 16:38:48 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:38:48 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 16:38:48 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:38:51 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=2.6s
+2026-01-23 16:38:51 INFO Project Build Attempt 1...
+2026-01-23 16:38:51 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:38:52 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=1.1s
+2026-01-23 16:38:52 WARNING Project build failed even after fixes. Continuing to test gen anyway...
+2026-01-23 16:41:28 INFO Detected 'extracted_methods' is a list. Converting to dict map...
+2026-01-23 16:41:28 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 16:41:28 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 16:41:28 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:41:28 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 16:41:28 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:41:28 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=0.8s
+2026-01-23 16:41:28 INFO Project Build Attempt 1...
+2026-01-23 16:41:28 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:41:29 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=0.9s
+2026-01-23 16:41:29 WARNING Project build failed even after fixes. Continuing to test gen anyway...
+2026-01-23 16:41:29 INFO Calling Test Generation API...
+2026-01-23 16:42:29 INFO Test generation failed: HTTPSConnectionPool(host='dashscope.aliyuncs.com', port=443): Read timed out. (read timeout=60)
+2026-01-23 16:42:29 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 16:42:29 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 16:42:29 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:42:29 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 16:42:29 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:42:30 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=0.8s
+2026-01-23 16:42:30 INFO Project Build Attempt 1...
+2026-01-23 16:42:30 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:42:31 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=0.9s
+2026-01-23 16:42:31 WARNING Project build failed even after fixes. Continuing to test gen anyway...
+2026-01-23 16:42:31 INFO Calling Test Generation API...
+2026-01-23 16:43:31 INFO Test generation failed: HTTPSConnectionPool(host='dashscope.aliyuncs.com', port=443): Read timed out. (read timeout=60)
+2026-01-23 16:59:02 INFO Detected 'extracted_methods' is a list. Converting to dict map...
+2026-01-23 16:59:02 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 16:59:02 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 16:59:02 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:59:02 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 16:59:02 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:59:03 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=0.8s
+2026-01-23 16:59:03 INFO Project Build Attempt 1...
+2026-01-23 16:59:03 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 16:59:04 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=0.9s
+2026-01-23 16:59:04 WARNING Project build failed. Proceeding to test gen anyway...
+2026-01-23 16:59:04 INFO Calling Test Generation API...
+2026-01-23 17:00:18 INFO Test written to /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12763.java
+2026-01-23 17:00:18 INFO Verifying Test Compilation (Attempt 1)...
+2026-01-23 17:00:18 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle compileTestJava (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:00:19 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle compileTestJava rc=1 elapsed=0.8s
+2026-01-23 17:00:19 WARNING Test Compilation Failed. Requesting Fix...
+2026-01-23 17:00:19 INFO Calling Auto-Fix API...
+2026-01-23 17:02:10 INFO Final Test Compilation Status: compile_failed
+2026-01-23 17:02:10 INFO CMD START: git add . (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:02:10 INFO CMD FINISH: git add . rc=0 elapsed=0.0s
+2026-01-23 17:02:10 INFO CMD START: git commit -m Add generated test 12763 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:02:10 INFO CMD FINISH: git commit -m Add generated test 12763 rc=0 elapsed=0.0s
+2026-01-23 17:02:10 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 17:02:10 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 17:02:10 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:02:10 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 17:02:10 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:02:11 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=1.1s
+2026-01-23 17:02:11 INFO Project Build Attempt 1...
+2026-01-23 17:02:11 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:02:11 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=0.9s
+2026-01-23 17:02:11 WARNING Project build failed. Proceeding to test gen anyway...
+2026-01-23 17:02:11 INFO Calling Test Generation API...
+2026-01-23 17:03:16 INFO Test written to /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12763.java
+2026-01-23 17:03:16 INFO Verifying Test Compilation (Attempt 1)...
+2026-01-23 17:03:16 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle compileTestJava (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:03:17 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle compileTestJava rc=1 elapsed=1.1s
+2026-01-23 17:03:17 WARNING Test Compilation Failed. Requesting Fix...
+2026-01-23 17:03:17 INFO Calling Auto-Fix API...
+2026-01-23 17:04:50 INFO Final Test Compilation Status: compile_failed
+2026-01-23 17:04:50 INFO CMD START: git add . (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:04:50 INFO CMD FINISH: git add . rc=0 elapsed=0.0s
+2026-01-23 17:04:50 INFO CMD START: git commit -m Add generated test 12763 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:04:50 INFO CMD FINISH: git commit -m Add generated test 12763 rc=0 elapsed=0.0s
+2026-01-23 17:19:27 INFO Detected 'extracted_methods' is a list. Converting to dict map...
+2026-01-23 17:19:27 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 17:19:27 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 17:19:27 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:19:27 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 17:19:27 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:19:28 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=0.7s
+2026-01-23 17:19:28 INFO Project Build Attempt 1...
+2026-01-23 17:19:28 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:19:29 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=0.8s
+2026-01-23 17:19:29 WARNING Project build failed. Proceeding to test gen anyway...
+2026-01-23 17:19:29 INFO Calling Test Generation API...
+2026-01-23 17:20:29 INFO Test written to /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/src/test/java/org/teamnewpipe/GeneratedTriggerTest_issue12763.java
+2026-01-23 17:20:29 INFO Verifying Test Compilation (Attempt 1)...
+2026-01-23 17:20:29 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle compileTestJava (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:20:30 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle compileTestJava rc=1 elapsed=0.8s
+2026-01-23 17:20:30 WARNING Test Compilation Failed. Requesting Fix...
+2026-01-23 17:20:30 INFO Calling Auto-Fix API...
+2026-01-23 17:22:13 INFO Final Test Compilation Status: compile_failed
+2026-01-23 17:22:13 INFO CMD START: git add . (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:22:13 INFO CMD FINISH: git add . rc=0 elapsed=0.0s
+2026-01-23 17:22:13 INFO CMD START: git commit -m Add generated test 12763 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:22:13 INFO CMD FINISH: git commit -m Add generated test 12763 rc=0 elapsed=0.0s
+2026-01-23 17:22:13 INFO Processing TeamNewPipe/NewPipe Issue 12763
+2026-01-23 17:22:13 INFO Checking out PRE-PATCH commit: 650b51ffec78a27df149a04f8dc017ae5d07dcce
+2026-01-23 17:22:13 INFO CMD START: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:22:13 INFO CMD FINISH: git checkout -f 650b51ffec78a27df149a04f8dc017ae5d07dcce rc=0 elapsed=0.0s
+2026-01-23 17:22:13 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:22:14 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=0.8s
+2026-01-23 17:22:14 INFO Project Build Attempt 1...
+2026-01-23 17:22:14 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle assemble -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:22:14 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle assemble -x test rc=1 elapsed=0.8s
+2026-01-23 17:22:14 WARNING Project build failed. Proceeding to test gen anyway...
+2026-01-23 17:22:14 INFO Calling Test Generation API...
+2026-01-23 17:23:17 INFO Test written to /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/src/test/java/org/schabi/newpipe/GeneratedTriggerTest_issue12763.java
+2026-01-23 17:23:17 INFO Verifying Test Compilation (Attempt 1)...
+2026-01-23 17:23:17 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle compileTestJava (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:23:17 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle compileTestJava rc=1 elapsed=0.8s
+2026-01-23 17:23:17 WARNING Test Compilation Failed. Requesting Fix...
+2026-01-23 17:23:17 INFO Calling Auto-Fix API...
+2026-01-23 17:25:03 INFO Final Test Compilation Status: compile_failed
+2026-01-23 17:25:03 INFO CMD START: git add . (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:25:03 INFO CMD FINISH: git add . rc=0 elapsed=0.0s
+2026-01-23 17:25:03 INFO CMD START: git commit -m Add generated test 12763 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:25:03 INFO CMD FINISH: git commit -m Add generated test 12763 rc=0 elapsed=0.0s
+2026-01-23 17:28:29 INFO Script start. Using API URL: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-01-23 17:28:29 INFO Using API model: deepseek-r1
+2026-01-23 17:28:29 INFO Filtering to issue ids: ['3579058994']
+2026-01-23 17:28:29 INFO Loaded 374 issues from /root/bug-report2-test-cases2/issues_commits.json
+2026-01-23 17:28:29 INFO [86/374] [12763] Processing repo TeamNewPipe/NewPipe ...
+2026-01-23 17:28:29 INFO repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 17:28:29 INFO   clone: repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 17:28:29 WARNING   checkout_pre_patch failed: name 'checkout_pre_patch_commit' is not defined
+2026-01-23 17:28:29 INFO Preparing build environment for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-23 17:28:29 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:28:29 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:28:29 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=0.7s
+2026-01-23 17:28:29 INFO CMD STDOUT (truncated 2000): 
+> Task :dependencies
+
+------------------------------------------------------------
+Root project 'TeamNewPipe_NewPipe'
+------------------------------------------------------------
+
+No configurations
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 669ms
+1 actionable task: 1 executed
+
+2026-01-23 17:28:29 INFO Preparation complete for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=0']
+2026-01-23 17:28:29 INFO Attempting build for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-23 17:28:29 INFO   Build attempt 1/3 ...
+2026-01-23 17:28:29 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:28:29 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:28:30 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=0.8s
+2026-01-23 17:28:30 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 17:28:30 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 705ms
+
+2026-01-23 17:28:30 INFO   Detected failing files for auto-fix: []
+2026-01-23 17:28:30 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 17:28:30 INFO Calling auto-fix API ...
+2026-01-23 17:30:42 INFO Auto-fix API returned status 200 (response length 25016 chars)
+2026-01-23 17:30:42 INFO   Applied patch file: build.gradle.kts
+2026-01-23 17:30:42 INFO CMD START: git add build.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:30:42 INFO CMD FINISH: git add build.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 17:30:42 INFO CMD START: git commit -m Auto-applied build fixes attempt 1 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:30:42 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 1 rc=0 elapsed=0.0s
+2026-01-23 17:30:42 INFO CMD STDOUT (truncated 2000): [detached HEAD 880a9b61a3] Auto-applied build fixes attempt 1
+ 1 file changed, 12 insertions(+)
+
+2026-01-23 17:30:42 INFO   Committed applied patches: ['build.gradle.kts']
+2026-01-23 17:30:42 INFO   Build attempt 2/3 ...
+2026-01-23 17:30:42 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:30:42 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:30:44 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=1.6s
+2026-01-23 17:30:44 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 17:30:44 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+
+2026-01-23 17:30:44 INFO   Detected failing files for auto-fix: []
+2026-01-23 17:30:44 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 17:30:44 INFO Calling auto-fix API ...
+2026-01-23 17:32:34 INFO Auto-fix API returned status 200 (response length 20822 chars)
+2026-01-23 17:32:34 INFO   Applied patch file: build.gradle.kts
+2026-01-23 17:32:34 INFO CMD START: git add build.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:32:34 INFO CMD FINISH: git add build.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 17:32:34 INFO CMD START: git commit -m Auto-applied build fixes attempt 2 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:32:34 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 2 rc=0 elapsed=0.0s
+2026-01-23 17:32:34 INFO CMD STDOUT (truncated 2000): [detached HEAD 5de306335c] Auto-applied build fixes attempt 2
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+2026-01-23 17:32:34 INFO   Committed applied patches: ['build.gradle.kts']
+2026-01-23 17:32:34 INFO   Build attempt 3/3 ...
+2026-01-23 17:32:34 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:32:34 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:32:36 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=1.6s
+2026-01-23 17:32:36 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 17:32:36 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+
+2026-01-23 17:32:36 INFO   Detected failing files for auto-fix: []
+2026-01-23 17:32:36 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 17:32:36 INFO Calling auto-fix API ...
+2026-01-23 17:34:32 INFO Auto-fix API returned status 200 (response length 22353 chars)
+2026-01-23 17:34:32 INFO   Applied patch file: build.gradle.kts
+2026-01-23 17:34:32 INFO CMD START: git add build.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:34:32 INFO CMD FINISH: git add build.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 17:34:32 INFO CMD START: git commit -m Auto-applied build fixes attempt 3 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:34:32 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 3 rc=0 elapsed=0.0s
+2026-01-23 17:34:32 INFO CMD STDOUT (truncated 2000): [detached HEAD 918a512137] Auto-applied build fixes attempt 3
+ 1 file changed, 8 insertions(+), 10 deletions(-)
+
+2026-01-23 17:34:32 INFO   Committed applied patches: ['build.gradle.kts']
+2026-01-23 17:34:32 WARNING Build attempts exhausted; final_success=False
+2026-01-23 17:34:32 WARNING   Build stage: FAILED for TeamNewPipe/NewPipe (attempts made); proceeding to generate test regardless as requested.
+2026-01-23 17:34:32 INFO Calling test generation API ...
+2026-01-23 17:35:42 INFO API returned status 200 (response length 13626 chars)
+2026-01-23 17:35:42 INFO Wrote generic test output: /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/generated_tests/generated_issue_12763.txt
+2026-01-23 17:35:42 INFO Verifying Test Compilation (Attempt 1)...
+2026-01-23 17:35:42 WARNING   write/verify failed: name 'get_gradle_cmd' is not defined
+2026-01-23 17:35:42 INFO [87/374] [12763] Processing repo TeamNewPipe/NewPipe ...
+2026-01-23 17:35:42 INFO repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 17:35:42 INFO   clone: repo already exists at /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe, skipping clone (use --update-existing to fetch/update)
+2026-01-23 17:35:42 WARNING   checkout_pre_patch failed: name 'checkout_pre_patch_commit' is not defined
+2026-01-23 17:35:42 INFO Preparing build environment for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (detected gradle) ...
+2026-01-23 17:35:42 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:35:42 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle dependencies (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:35:43 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle dependencies rc=0 elapsed=1.4s
+2026-01-23 17:35:43 INFO CMD STDOUT (truncated 2000): 
+> Task :dependencies
+
+------------------------------------------------------------
+Root project 'TeamNewPipe_NewPipe'
+------------------------------------------------------------
+
+No configurations
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 1s
+1 actionable task: 1 executed
+
+2026-01-23 17:35:43 INFO Preparation complete for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe: ['preferred gradle dependencies rc=0']
+2026-01-23 17:35:43 INFO Attempting build for /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe (build_system=gradle) ...
+2026-01-23 17:35:43 INFO   Build attempt 1/3 ...
+2026-01-23 17:35:43 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:35:43 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:35:44 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=0.8s
+2026-01-23 17:35:44 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 17:35:44 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 700ms
+
+2026-01-23 17:35:44 INFO   Detected failing files for auto-fix: []
+2026-01-23 17:35:44 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 17:35:44 INFO Calling auto-fix API ...
+2026-01-23 17:36:45 INFO Auto-fix API returned status 200 (response length 12089 chars)
+2026-01-23 17:36:45 INFO   Applied patch file: local.properties
+2026-01-23 17:36:45 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:36:45 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-23 17:36:45 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-23 17:36:45 INFO CMD START: git commit -m Auto-applied build fixes attempt 1 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:36:45 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 1 rc=1 elapsed=0.0s
+2026-01-23 17:36:45 INFO CMD STDOUT (truncated 2000): HEAD detached from 650b51ffec
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	generated_tests/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+2026-01-23 17:36:45 INFO   Committed applied patches: ['local.properties']
+2026-01-23 17:36:45 INFO   Build attempt 2/3 ...
+2026-01-23 17:36:45 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:36:45 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:36:45 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=0.8s
+2026-01-23 17:36:45 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 17:36:45 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 706ms
+
+2026-01-23 17:36:45 INFO   Detected failing files for auto-fix: []
+2026-01-23 17:36:45 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 17:36:45 INFO Calling auto-fix API ...
+2026-01-23 17:37:54 INFO Auto-fix API returned status 200 (response length 15410 chars)
+2026-01-23 17:37:54 INFO   Applied patch file: local.properties
+2026-01-23 17:37:54 INFO CMD START: git add local.properties (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:37:54 INFO CMD FINISH: git add local.properties rc=1 elapsed=0.0s
+2026-01-23 17:37:54 WARNING CMD STDERR (truncated 2000): The following paths are ignored by one of your .gitignore files:
+local.properties
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+
+2026-01-23 17:37:54 INFO CMD START: git commit -m Auto-applied build fixes attempt 2 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:37:54 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 2 rc=1 elapsed=0.0s
+2026-01-23 17:37:54 INFO CMD STDOUT (truncated 2000): HEAD detached from 650b51ffec
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	generated_tests/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+2026-01-23 17:37:54 INFO   Committed applied patches: ['local.properties']
+2026-01-23 17:37:54 INFO   Build attempt 3/3 ...
+2026-01-23 17:37:54 INFO Using local Gradle at /root/gradle/gradle-8.13/bin/gradle
+2026-01-23 17:37:54 INFO CMD START: /root/gradle/gradle-8.13/bin/gradle build -x test (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:37:55 INFO CMD FINISH: /root/gradle/gradle-8.13/bin/gradle build -x test rc=1 elapsed=0.8s
+2026-01-23 17:37:55 INFO CMD STDOUT (truncated 2000): WARNING: The following problems were found when resolving the SDK location:
+Where: sdk.dir property in local.properties file. Problem: Directory does not exist
+
+
+[Incubating] Problems report is available at: file:///root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+2026-01-23 17:37:55 WARNING CMD STDERR (truncated 2000): 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 687ms
+
+2026-01-23 17:37:55 INFO   Detected failing files for auto-fix: []
+2026-01-23 17:37:55 INFO   No explicit failing .java files found; will still request auto-fix using stderr snippet.
+2026-01-23 17:37:55 INFO Calling auto-fix API ...
+2026-01-23 17:39:26 INFO Auto-fix API returned status 200 (response length 18549 chars)
+2026-01-23 17:39:26 INFO   Applied patch file: build.gradle.kts
+2026-01-23 17:39:26 INFO CMD START: git add build.gradle.kts (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:39:26 INFO CMD FINISH: git add build.gradle.kts rc=0 elapsed=0.0s
+2026-01-23 17:39:26 INFO CMD START: git commit -m Auto-applied build fixes attempt 3 (cwd=/root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe)
+2026-01-23 17:39:26 INFO CMD FINISH: git commit -m Auto-applied build fixes attempt 3 rc=0 elapsed=0.0s
+2026-01-23 17:39:26 INFO CMD STDOUT (truncated 2000): [detached HEAD a2ef477a9e] Auto-applied build fixes attempt 3
+ 1 file changed, 22 insertions(+), 2 deletions(-)
+
+2026-01-23 17:39:26 INFO   Committed applied patches: ['build.gradle.kts']
+2026-01-23 17:39:26 WARNING Build attempts exhausted; final_success=False
+2026-01-23 17:39:26 WARNING   Build stage: FAILED for TeamNewPipe/NewPipe (attempts made); proceeding to generate test regardless as requested.
+2026-01-23 17:39:26 INFO Calling test generation API ...
+2026-01-23 17:40:04 INFO API returned status 200 (response length 7487 chars)
+2026-01-23 17:40:04 INFO Wrote generic test output: /root/bug-report2-test-cases2/repos/TeamNewPipe_NewPipe/generated_tests/generated_issue_12763.txt
+2026-01-23 17:40:04 INFO Verifying Test Compilation (Attempt 1)...
+2026-01-23 17:40:04 WARNING   write/verify failed: name 'get_gradle_cmd' is not defined
+2026-01-23 17:40:04 INFO Done. Results saved to results/ directory.
+2026-01-23 17:40:04 INFO Aggregated generated tests: /root/bug-report2-test-cases2/results/generated_tests.json

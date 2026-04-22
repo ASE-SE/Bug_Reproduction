@@ -1,0 +1,95 @@
+{
+  "issue_number": 4740,
+  "repo": "Stirling-Tools/Stirling-PDF",
+  "clone_ok": true,
+  "clone_msg": "repo already exists at /root/bug-report2-test-cases/repos/Stirling-Tools_Stirling-PDF, skipping clone (use --update-existing to fetch/update)",
+  "timestamp": 1767752621.1587818,
+  "discard_local_changes": {
+    "reset": {
+      "rc": 0,
+      "stdout": "HEAD is now at d13a52f89 :globe_with_meridians: Sync Translations + Update README Progress Table (#3418)\n",
+      "stderr": ""
+    },
+    "clean": {
+      "rc": 0,
+      "stdout": "Removing .gradle/\nRemoving build/\nRemoving configs/\nRemoving customFiles/\nRemoving logs/\nRemoving pipeline/watchedFolders/\nRemoving src/main/resources/version.properties\n",
+      "stderr": ""
+    }
+  },
+  "requested_patch_commit": {
+    "pre_commit_sha": "e07f73dce73952b5a7aa4f474a8c78d92b15bc53",
+    "commit_sha": "09baa4948602aeb50a961dbe12b50f76d1f83923"
+  },
+  "checkout_pre_patch_ok": true,
+  "checkout_pre_patch_msg": "checked out explicit pre-patch field pre_commit_sha",
+  "checked_out_commit": "e07f73dce73952b5a7aa4f474a8c78d92b15bc53",
+  "build_system_detected": "gradle",
+  "prepare": {
+    "build_system": "gradle",
+    "actions": [
+      "gradlew dependencies rc=0"
+    ],
+    "last": {
+      "rc": 0,
+      "stdout": "Starting a Gradle Daemon (subsequent builds will be faster)\n\n> Configure project :\n0.26.2\n\n> Task :dependencies\n\n------------------------------------------------------------\nRoot project 'Stirling-PDF'\n------------------------------------------------------------\n\nannotationProcessor - Annotation processors and their dependencies for source set 'main'.\n\\--- org.projectlombok:lombok:1.18.32\n\nbootArchives - Configuration for Spring Boot archive artifacts. (n)\nNo dependencies\n\ncompileClasspath - Compile classpath for source set 'main'.\n+--- org.projectlombok:lombok:1.18.32\n+--- ch.qos.logback:logback-classic:1.5.6\n|    +--- ch.qos.logback:logback-core:1.5.6\n|    \\--- org.slf4j:slf4j-api:2.0.13\n+--- ch.qos.logback:logback-core:1.5.6\n+--- org.springframework:spring-webmvc:6.1.9\n|    +--- org.springframework:spring-aop:6.1.9 -> 6.1.8\n|    |    +--- org.springframework:spring-beans:6.1.8\n|    |    |    \\--- org.springframework:spring-core:6.1.8\n|    |    |         \\--- org.springframework:spring-jcl:6.1.8\n|    |    \\--- org.springframework:spring-core:6.1.8 (*)\n|    +--- org.springframework:spring-beans:6.1.9 -> 6.1.8 (*)\n|    +--- org.springframework:spring-context:6.1.9 -> 6.1.8\n|    |    +--- org.springframework:spring-aop:6.1.8 (*)\n|    |    +--- org.springframework:spring-beans:6.1.8 (*)\n|    |    +--- org.springframework:spring-core:6.1.8 (*)\n|    |    +--- org.springframework:spring-expression:6.1.8\n|    |    |    \\--- org.springframework:spring-core:6.1.8 (*)\n|    |    \\--- io.micrometer:micrometer-observation:1.12.6 -> 1.13.0\n|    |         \\--- io.micrometer:micrometer-commons:1.13.0\n|    +--- org.springframework:spring-core:6.1.9 -> 6.1.8 (*)\n|    +--- org.springframework:spring-expression:6.1.9 -> 6.1.8 (*)\n|    \\--- org.springframework:spring-web:6.1.9 -> 6.1.8\n|         +--- org.springframework:spring-beans:6.1.8 (*)\n|         +--- org.springframework:spring-core:6.1.8 (*)\n|         \\--- io.micrometer:micrometer-observation:1.12.6 -> 1.13.0 (*)\n+--- io.github.",
+      "stderr": ""
+    }
+  },
+  "api_ok": true,
+  "api_language": "java",
+  "path_hint_suggested": null,
+  "api_raw": {
+    "test_code": "package stirling.software.SPDF.controller.api.pipeline;\n\nimport static org.junit.jupiter.api.Assertions.*;\n\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipOutputStream;\n\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.io.TempDir;\n\npublic class PipelineProcessorTest {\n\n    @Test\n    void shouldNotUnzipCbzFile(@TempDir Path tempDir) throws Exception {\n        // Create a CBZ file\n        Path cbzPath = tempDir.resolve(\"test.cbz\");\n        try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(cbzPath.toFile()))) {\n            zos.putNextEntry(new ZipEntry(\"dummy.txt\"));\n            zos.write(\"content\".getBytes());\n            zos.closeEntry();\n        }\n\n        // Create output directory\n        Path outputDir = tempDir.resolve(\"output\");\n        Files.createDirectory(outputDir);\n\n        // Process file\n        PipelineProcessor processor = new PipelineProcessor();\n        processor.processFile(cbzPath.toFile(), outputDir.toFile());\n\n        // Verify CBZ file remains intact\n        File[] outputFiles = outputDir.toFile().listFiles();\n        assertNotNull(outputFiles);\n        assertEquals(1, outputFiles.length);\n        assertEquals(\"test.cbz\", outputFiles[0].getName());\n        assertFalse(new File(outputDir.toFile(), \"dummy.txt\").exists(), \"CBZ was unzipped\");\n    }\n}",
+    "language": "java"
+  },
+  "test_written_files": [
+    {
+      "path": "src/test/java/stirling/software/SPDF/controller/api/pipeline/GeneratedTriggerTest_issue4740.java",
+      "content": "package stirling.software.SPDF.controller.api.pipeline;\n\nimport static org.junit.jupiter.api.Assertions.*;\n\nimport java.io.File;\nimport java.io.FileOutputStream;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.util.zip.ZipEntry;\nimport java.util.zip.ZipOutputStream;\n\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.io.TempDir;\n\npublic class PipelineProcessorTest {\n\n    @Test\n    void shouldNotUnzipCbzFile(@TempDir Path tempDir) throws Exception {\n        // Create a CBZ file\n        Path cbzPath = tempDir.resolve(\"test.cbz\");\n        try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(cbzPath.toFile()))) {\n            zos.putNextEntry(new ZipEntry(\"dummy.txt\"));\n            zos.write(\"content\".getBytes());\n            zos.closeEntry();\n        }\n\n        // Create output directory\n        Path outputDir = tempDir.resolve(\"output\");\n        Files.createDirectory(outputDir);\n\n        // Process file\n        PipelineProcessor processor = new PipelineProcessor();\n        processor.processFile(cbzPath.toFile(), outputDir.toFile());\n\n        // Verify CBZ file remains intact\n        File[] outputFiles = outputDir.toFile().listFiles();\n        assertNotNull(outputFiles);\n        assertEquals(1, outputFiles.length);\n        assertEquals(\"test.cbz\", outputFiles[0].getName());\n        assertFalse(new File(outputDir.toFile(), \"dummy.txt\").exists(), \"CBZ was unzipped\");\n    }\n}"
+    }
+  ],
+  "test_runs": [
+    {
+      "build_system": "gradle",
+      "steps": [
+        {
+          "cmd": "/root/bug-report2-test-cases/repos/Stirling-Tools_Stirling-PDF/gradlew test",
+          "rc": 1,
+          "stdout": "\n> Configure project :\n0.26.2\n\n> Task :spotlessInternalRegisterDependencies\n> Task :spotlessJava\n> Task :spotlessJavaApply\n> Task :spotlessApply\n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava FAILED\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.7/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n6 actionable tasks: 6 executed\n",
+          "stderr": "Note: /root/bug-report2-test-cases/repos/Stirling-Tools_Stirling-PDF/src/main/java/stirling/software/SPDF/controller/api/pipeline/PipelineProcessor.java uses unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\n/root/bug-report2-test-cases/repos/Stirling-Tools_Stirling-PDF/src/test/java/stirling/software/SPDF/controller/api/pipeline/GeneratedTriggerTest_issue4740.java:33: error: cannot find symbol\n        processor.processFile(cbzPath.toFile(), outputDir.toFile());\n                 ^\n  symbol:   method processFile(File,File)\n  location: variable processor of type PipelineProcessor\n1 error\n\nFAILURE: Build failed with an exception.\n\n* What went wrong:\nExecution failed for task ':compileTestJava'.\n> Compilation failed; see the compiler error output for details.\n\n* Try:\n> Run with --info option to get more log output.\n> Run with --scan to get full insights.\n\nBUILD FAILED in 11s\n"
+        }
+      ]
+    },
+    {
+      "build_system": "gradle",
+      "steps": [
+        {
+          "cmd": "/root/bug-report2-test-cases/repos/Stirling-Tools_Stirling-PDF/gradlew test",
+          "rc": 0,
+          "stdout": "\n> Configure project :\n0.26.2\n\n> Task :spotlessInternalRegisterDependencies UP-TO-DATE\n> Task :spotlessJava UP-TO-DATE\n> Task :spotlessJavaApply UP-TO-DATE\n> Task :spotlessApply UP-TO-DATE\n> Task :compileJava UP-TO-DATE\n> Task :processResources\n> Task :classes\n> Task :compileTestJava\n> Task :processTestResources NO-SOURCE\n> Task :testClasses\n10:27:34.451 [SpringApplicationShutdownHook] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@65374526{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}\n10:27:34.457 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'\n10:27:34.460 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...\n10:27:34.463 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.\n10:27:34.464 [SpringApplicationShutdownHook] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@39adf4e6{STOPPING}[12.0.9,sto=0]\n10:27:34.467 [SpringApplicationShutdownHook] INFO  o.e.j.s.h.ContextHandler.application - Destroying Spring FrameworkServlet 'dispatcherServlet'\n10:27:34.469 [SpringApplicationShutdownHook] INFO  o.e.j.e.s.ServletContextHandler - Stopped osbwej.JettyEmbeddedWebAppContext@5c24a636{application,/,b=[file:/tmp/jetty-docbase.8080.11350925827339022329/, jar:file:///root/.gradle/caches/modules-2/files-2.1/org.webjars/swagger-ui/5.2.0/c48d665a3f3a5d73afa34982953d3c31acc1d1dd/swagger-ui-5.2.0.jar!/META-INF/resources/],a=AVAILABLE,h=oeje10s.SessionHandler@2f22049d{STOPPED}}\n> Task :test\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.7/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 14s\n7 actionable tasks: 3 executed, 4 up-to-date\n",
+          "stderr": "OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n"
+        }
+      ]
+    }
+  ],
+  "fix_attempts": [
+    {
+      "ok": true,
+      "applied": [
+        "src/test/java/stirling/software/SPDF/controller/api/pipeline/GeneratedTriggerTest_issue4740.java"
+      ]
+    }
+  ],
+  "test_run_result": {
+    "build_system": "gradle",
+    "steps": [
+      {
+        "cmd": "/root/bug-report2-test-cases/repos/Stirling-Tools_Stirling-PDF/gradlew test",
+        "rc": 0,
+        "stdout": "\n> Configure project :\n0.26.2\n\n> Task :spotlessInternalRegisterDependencies UP-TO-DATE\n> Task :spotlessJava UP-TO-DATE\n> Task :spotlessJavaApply UP-TO-DATE\n> Task :spotlessApply UP-TO-DATE\n> Task :compileJava UP-TO-DATE\n> Task :processResources\n> Task :classes\n> Task :compileTestJava\n> Task :processTestResources NO-SOURCE\n> Task :testClasses\n10:27:34.451 [SpringApplicationShutdownHook] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@65374526{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}\n10:27:34.457 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'\n10:27:34.460 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...\n10:27:34.463 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.\n10:27:34.464 [SpringApplicationShutdownHook] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@39adf4e6{STOPPING}[12.0.9,sto=0]\n10:27:34.467 [SpringApplicationShutdownHook] INFO  o.e.j.s.h.ContextHandler.application - Destroying Spring FrameworkServlet 'dispatcherServlet'\n10:27:34.469 [SpringApplicationShutdownHook] INFO  o.e.j.e.s.ServletContextHandler - Stopped osbwej.JettyEmbeddedWebAppContext@5c24a636{application,/,b=[file:/tmp/jetty-docbase.8080.11350925827339022329/, jar:file:///root/.gradle/caches/modules-2/files-2.1/org.webjars/swagger-ui/5.2.0/c48d665a3f3a5d73afa34982953d3c31acc1d1dd/swagger-ui-5.2.0.jar!/META-INF/resources/],a=AVAILABLE,h=oeje10s.SessionHandler@2f22049d{STOPPED}}\n> Task :test\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.7/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 14s\n7 actionable tasks: 3 executed, 4 up-to-date\n",
+        "stderr": "OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n"
+      }
+    ]
+  },
+  "final_status": "no_failure_observed"
+}
