@@ -1,7 +1,11 @@
 """
 Dataset loader for python-swe-bench.
 
-Produces a normalized `issues_commits.json` with Python-only entries.
+主路径：从 Hugging Face 拉取 SWE-bench / SWT-Bench 数据集
+（默认 princeton-nlp/SWE-bench_Lite），instance_id 与 SWT-Bench
+官方 Docker 镜像一一对应，是后续接入评测的前提。
+
+回退路径：HF 不可用时改读本地 Parquet。
 """
 
 import json
@@ -9,17 +13,21 @@ from typing import Any
 
 from datasets import load_dataset
 
-# 这里引入修改后的 LOCAL_PARQUET_PATH
-from constants import LOCAL_PARQUET_PATH, ISSUES_FILE, logger
+from constants import (
+    HF_DATASET_NAME,
+    HF_DATASET_SPLIT,
+    ISSUES_FILE,
+    LOCAL_PARQUET_PATH,
+    logger,
+)
 
 
 def _normalize_entry(item: dict[str, Any]) -> dict[str, str] | None:
     """
     将原始数据集条目归一化为主流程可消费的最小结构。
 
-    过滤策略：
-    - 仅保留 language 包含 python 的样本；
-    - 必须有 instance_id/repo/base_commit/problem_description。
+    SWE-bench 系列数据集没有 language 字段（默认全是 Python），所以这里只在
+    字段存在时做过滤；对自建 Parquet 才会真正生效。
     """
     lang = str(item.get("language", "")).strip().lower()
     if lang and "python" not in lang:
@@ -56,28 +64,39 @@ def _normalize_entry(item: dict[str, Any]) -> dict[str, str] | None:
     }
 
 
+def _load_from_huggingface() -> list[dict[str, Any]]:
+    logger.info("Loading dataset from Hugging Face: %s [%s]", HF_DATASET_NAME, HF_DATASET_SPLIT)
+    ds = load_dataset(HF_DATASET_NAME, split=HF_DATASET_SPLIT)
+    return [dict(item) for item in ds]
+
+
+def _load_from_local_parquet() -> list[dict[str, Any]]:
+    logger.info("Loading dataset from local Parquet: %s", LOCAL_PARQUET_PATH)
+    ds = load_dataset("parquet", data_files={"test": LOCAL_PARQUET_PATH}, split="test")
+    return [dict(item) for item in ds]
+
+
 def fetch_and_clean_dataset(force_refresh: bool = False) -> list[dict[str, Any]]:
     """
-    获取并缓存 Python 样本：
-    - 默认优先读本地 issues_commits.json；
-    - force_refresh=True 时重新从本地 Parquet 拉取并覆盖缓存。
+    优先级：缓存（issues_commits.json） → Hugging Face → 本地 Parquet。
+    force_refresh=True 时跳过缓存，重新拉取并覆盖。
     """
     if ISSUES_FILE.exists() and not force_refresh:
         logger.info("Using cached dataset at %s", ISSUES_FILE)
         with ISSUES_FILE.open("r", encoding="utf-8") as f:
             return json.load(f)
 
-    # 【修改点】加载本地 Parquet 文件
-    logger.info("Loading dataset from local Parquet: %s", LOCAL_PARQUET_PATH)
-    # 使用 parquet 引擎，并通过 data_files 指定路径，映射到 "test" split
-    ds = load_dataset("parquet", data_files={"test": LOCAL_PARQUET_PATH}, split="test")
+    raw_items: list[dict[str, Any]]
+    try:
+        raw_items = _load_from_huggingface()
+    except Exception as e:
+        logger.warning("Hugging Face load failed (%s); falling back to local Parquet.", e)
+        raw_items = _load_from_local_parquet()
 
     processed_data: list[dict[str, Any]] = []
-    total = 0
     skipped = 0
-    for item in ds:
-        total += 1
-        normalized = _normalize_entry(dict(item))
+    for item in raw_items:
+        normalized = _normalize_entry(item)
         if normalized is None:
             skipped += 1
             continue
@@ -89,7 +108,12 @@ def fetch_and_clean_dataset(force_refresh: bool = False) -> list[dict[str, Any]]
     with ISSUES_FILE.open("w", encoding="utf-8") as f:
         json.dump(processed_data, f, indent=2, ensure_ascii=False)
 
-    logger.info("Dataset normalized: total=%s, skipped=%s, python_items=%s", total, skipped, len(processed_data))
+    logger.info(
+        "Dataset normalized: total=%s, skipped=%s, kept=%s",
+        len(raw_items),
+        skipped,
+        len(processed_data),
+    )
     return processed_data
 
 
