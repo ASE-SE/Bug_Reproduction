@@ -1,15 +1,17 @@
 """
 main.py
-Python 专用主控调度器（SWT-Bench 接入版）。
+Python SWT-Bench 接入版主控。
 
-流程：
-1) 从 Hugging Face 拉 SWE-bench / SWT-Bench 标准数据集；
-2) 让 LLM 为每条 instance 生成 pytest 触发测试；
-3) 把测试代码包装成 unified diff，组成 predictions JSONL；
-4) 把 predictions.jsonl 交给 SWT-Bench harness 跑（参见仓库 README）。
+两阶段命令：
 
-宿主机不再做 clone / venv / pytest——这些由 SWT-Bench 在 Docker 内完成，
-彻底消除"本地环境差异 vs 测试用例本身错"的歧义。
+  1) generate  —— 拉数据集 + 调 LLM 生成触发测试 + 输出 SWT-Bench predictions.jsonl
+                 并在 results/instances/<id>.json 落"原始缺陷报告 + 生成测试"档。
+
+  2) collect   —— 在 SWT-Bench harness 跑完之后，解析它的 run_instance_swt_logs/，
+                 把每条 instance 的执行输出 + 复现状态合并进 results/instances/<id>.json，
+                 并写 results/summary.json 汇总。
+
+中间步骤是手动跑 SWT-Bench harness，命令在 generate 完成后会打印出来。
 """
 
 import argparse
@@ -19,28 +21,34 @@ from pathlib import Path
 from typing import Any
 
 from api_client import call_api_generate_python_test
+from collector import collect_all
 from constants import (
     DEFAULT_API_MODEL,
     DEFAULT_API_URL,
     EMBEDDED_API_KEY,
+    HF_DATASET_NAME,
     METHOD_NAME,
     PREDICTIONS_FILE,
-    RESULTS_DIR,
+    SUMMARY_FILE,
+    SWT_BENCH_WORKDIR,
     logger,
 )
-from data_loader import fetch_and_clean_dataset
-from test_writer import build_prediction, write_predictions_jsonl
+from data_loader import fetch_and_clean_dataset, filter_by_repo, list_repos
+from test_writer import (
+    build_prediction,
+    load_initial_records,
+    write_initial_instance_file,
+    write_predictions_jsonl,
+)
 
+
+# ---------- generate ----------
 
 def _process_one(entry: dict[str, Any], api_url: str, api_key: str, api_model: str,
                  method_name: str) -> dict[str, Any] | None:
-    """对单条 instance 调 LLM 并组装为 prediction 记录。失败返回 None。"""
     instance_id = str(entry["instance_id"])
     api_res = call_api_generate_python_test(
-        bug_entry=entry,
-        api_url=api_url,
-        api_key=api_key,
-        api_model=api_model,
+        bug_entry=entry, api_url=api_url, api_key=api_key, api_model=api_model
     )
     if not api_res.get("ok"):
         logger.error("Generation error for %s: %s", instance_id, api_res.get("error"))
@@ -62,29 +70,30 @@ def _process_one(entry: dict[str, Any], api_url: str, api_key: str, api_model: s
     )
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Python SWT-Bench predictions generator")
-    parser.add_argument("--limit", type=int, default=None, help="Max tasks to process")
-    parser.add_argument("--instance-id", type=str, default=None, help="Only run one instance_id")
-    parser.add_argument("--force-refresh", action="store_true", help="Re-pull dataset, ignore cache")
-    parser.add_argument("--api-url", type=str, default=DEFAULT_API_URL)
-    parser.add_argument("--api-model", type=str, default=DEFAULT_API_MODEL)
-    parser.add_argument("--method-name", type=str, default=METHOD_NAME,
-                        help="Identifier written into predictions.model_name_or_path")
-    parser.add_argument("--output", type=str, default=str(PREDICTIONS_FILE),
-                        help="Path to write predictions.jsonl (SWT-Bench input)")
-    args = parser.parse_args()
-
+def cmd_generate(args: argparse.Namespace) -> int:
     api_key = os.getenv("API_KEY") or EMBEDDED_API_KEY
     if not api_key:
         logger.error("API_KEY missing.")
-        return
+        return 2
 
     try:
-        entries = fetch_and_clean_dataset(force_refresh=args.force_refresh)
+        entries = fetch_and_clean_dataset(
+            force_refresh=args.force_refresh,
+            dataset_name=args.dataset_name,
+            split=args.split,
+        )
     except Exception as e:
         logger.error("Failed to load dataset: %s", e)
-        return
+        return 2
+
+    if args.repo:
+        entries = filter_by_repo(entries, args.repo)
+    if args.instance_id:
+        entries = [e for e in entries if str(e.get("instance_id")) == args.instance_id]
+
+    if not entries:
+        logger.error("No entries match the filters. Use --list-repos to inspect dataset.")
+        return 2
 
     predictions: list[dict[str, Any]] = []
     processed = 0
@@ -92,45 +101,153 @@ def main() -> None:
     try:
         for idx, entry in enumerate(entries):
             if args.limit is not None and processed >= args.limit:
-                logger.info("Reached limit of %s tasks. Stopping.", args.limit)
+                logger.info("Reached limit of %s tasks.", args.limit)
                 break
-
-            instance_id = str(entry.get("instance_id", f"idx-{idx}"))
-            if args.instance_id and instance_id != args.instance_id:
-                continue
-
-            logger.info("=== [%s/%s] %s (%s) ===", idx + 1, len(entries), instance_id, entry.get("repo"))
+            iid = str(entry["instance_id"])
+            logger.info("=== [%s/%s] %s (%s) ===", idx + 1, len(entries), iid, entry.get("repo"))
 
             record = _process_one(entry, args.api_url, api_key, args.api_model, args.method_name)
             if record is None:
                 continue
             predictions.append(record)
-
-            # 单条留档，方便排查 LLM 输出
-            per_file = RESULTS_DIR / f"{instance_id}.json"
-            with per_file.open("w", encoding="utf-8") as f:
-                json.dump(record, f, indent=2, ensure_ascii=False)
+            write_initial_instance_file(entry, record)
             processed += 1
-
     except KeyboardInterrupt:
-        logger.warning("\nProcess interrupted by user (Ctrl+C). Saving progress...")
+        logger.warning("Interrupted; saving partial progress...")
+
+    if not predictions:
+        logger.info("No predictions produced.")
+        return 1
+
+    out = Path(args.output) if args.output else PREDICTIONS_FILE
+    write_predictions_jsonl(predictions, out)
+
+    logger.info("")
+    logger.info("✅ Generated %s predictions -> %s", len(predictions), out)
+    logger.info("✅ Per-instance archives in results/instances/")
+    logger.info("")
+    logger.info("Next: run SWT-Bench harness (Docker) to actually execute the tests:")
+    logger.info("  cd %s", SWT_BENCH_WORKDIR)
+    logger.info(
+        "  python -m src.main \\\n"
+        "    --dataset_name %s \\\n"
+        "    --predictions_path %s \\\n"
+        "    --filter_swt --max_workers 4 \\\n"
+        "    --run_id %s",
+        args.dataset_name or HF_DATASET_NAME, out, args.run_id,
+    )
+    logger.info("")
+    logger.info("Then run: python main.py collect --run-id %s --method-name %s",
+                args.run_id, args.method_name)
+    return 0
+
+
+# ---------- collect ----------
+
+def cmd_collect(args: argparse.Namespace) -> int:
+    try:
+        entries = fetch_and_clean_dataset(
+            force_refresh=False,
+            dataset_name=args.dataset_name,
+            split=args.split,
+        )
     except Exception as e:
-        logger.error("Unexpected error in main loop: %s", e)
-    finally:
-        if predictions:
-            write_predictions_jsonl(predictions, Path(args.output))
-            logger.info(
-                "Done. %s predictions ready. Next step: feed %s to SWT-Bench harness.",
-                len(predictions), args.output,
-            )
-            logger.info(
-                "Example: python -m src.main --dataset_name princeton-nlp/SWE-bench_Lite "
-                "--predictions_path %s --filter_swt --max_workers 4 --run_id my_run",
-                args.output,
-            )
-        else:
-            logger.info("No predictions produced. Exiting.")
+        logger.error("Failed to load dataset: %s", e)
+        return 2
+
+    if args.repo:
+        entries = filter_by_repo(entries, args.repo)
+
+    initial = load_initial_records()
+    if not initial:
+        logger.error("No initial records found in results/instances/. Run `generate` first.")
+        return 2
+
+    # 只 collect 我们之前 generate 过的 instance
+    entries = [e for e in entries if e["instance_id"] in initial]
+    if not entries:
+        logger.error("No entries overlap with results/instances/.")
+        return 2
+
+    counts = collect_all(entries, initial, args.method_name, args.run_id)
+    total = sum(counts.values())
+
+    summary = {
+        "method_name": args.method_name,
+        "run_id": args.run_id,
+        "dataset_name": args.dataset_name or HF_DATASET_NAME,
+        "total": total,
+        "by_status": counts,
+    }
+    with SUMMARY_FILE.open("w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2, ensure_ascii=False)
+
+    logger.info("")
+    logger.info("✅ Collected %s instances. Status distribution:", total)
+    for k, v in sorted(counts.items(), key=lambda kv: -kv[1]):
+        logger.info("  %-22s %d", k, v)
+    logger.info("Summary written to %s", SUMMARY_FILE)
+    logger.info("Per-instance comparison files in results/instances/<id>.json")
+    return 0
+
+
+# ---------- list-repos ----------
+
+def cmd_list_repos(args: argparse.Namespace) -> int:
+    entries = fetch_and_clean_dataset(
+        force_refresh=args.force_refresh,
+        dataset_name=args.dataset_name,
+        split=args.split,
+    )
+    counts = list_repos(entries)
+    print(f"Total entries: {len(entries)}; unique repos: {len(counts)}")
+    for repo, n in counts.items():
+        print(f"  {repo:<40s} {n}")
+    return 0
+
+
+# ---------- argparse ----------
+
+def _add_common_args(p: argparse.ArgumentParser) -> None:
+    p.add_argument("--dataset-name", dest="dataset_name", default=None,
+                   help=f"HF dataset (default: {HF_DATASET_NAME})")
+    p.add_argument("--split", default=None, help="dataset split (default: test)")
+    p.add_argument("--repo", default=None,
+                   help="filter by repo full name, e.g. sympy/sympy")
+    p.add_argument("--method-name", dest="method_name", default=METHOD_NAME)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Python SWT-Bench predictions pipeline")
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    g = sub.add_parser("generate", help="generate predictions.jsonl from LLM")
+    _add_common_args(g)
+    g.add_argument("--limit", type=int, default=None)
+    g.add_argument("--instance-id", dest="instance_id", default=None)
+    g.add_argument("--force-refresh", dest="force_refresh", action="store_true")
+    g.add_argument("--api-url", dest="api_url", default=DEFAULT_API_URL)
+    g.add_argument("--api-model", dest="api_model", default=DEFAULT_API_MODEL)
+    g.add_argument("--output", default=None,
+                   help=f"predictions.jsonl path (default: {PREDICTIONS_FILE})")
+    g.add_argument("--run-id", dest="run_id", default="local_run",
+                   help="convenience: gets printed in the SWT-Bench command hint")
+    g.set_defaults(func=cmd_generate)
+
+    c = sub.add_parser("collect", help="parse SWT-Bench harness logs into per-instance results")
+    _add_common_args(c)
+    c.add_argument("--run-id", dest="run_id", required=True,
+                   help="must match the --run_id you passed to SWT-Bench harness")
+    c.set_defaults(func=cmd_collect)
+
+    lr = sub.add_parser("list-repos", help="list repos and instance counts in the dataset")
+    _add_common_args(lr)
+    lr.add_argument("--force-refresh", dest="force_refresh", action="store_true")
+    lr.set_defaults(func=cmd_list_repos)
+
+    args = parser.parse_args()
+    return args.func(args)
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

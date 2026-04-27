@@ -1,32 +1,41 @@
 """
 Dataset loader for python-swe-bench.
 
-主路径：从 Hugging Face 拉取 SWE-bench / SWT-Bench 数据集
-（默认 princeton-nlp/SWE-bench_Lite），instance_id 与 SWT-Bench
-官方 Docker 镜像一一对应，是后续接入评测的前提。
-
+主路径：从 Hugging Face 拉 SWE-bench / SWT-Bench 数据集（默认
+princeton-nlp/SWE-bench_Lite），缓存到 data/<dataset>.json。
 回退路径：HF 不可用时改读本地 Parquet。
+
+支持按 repo 过滤（--repo sympy/sympy），方便针对单仓库快速验证。
 """
 
 import json
+from pathlib import Path
 from typing import Any
 
 from datasets import load_dataset
 
 from constants import (
+    DATA_DIR,
     HF_DATASET_NAME,
     HF_DATASET_SPLIT,
-    ISSUES_FILE,
     LOCAL_PARQUET_PATH,
     logger,
 )
+
+
+def _safe_name(s: str) -> str:
+    return s.replace("/", "_").replace(":", "_")
+
+
+def _cache_path(dataset_name: str, split: str) -> Path:
+    return DATA_DIR / f"{_safe_name(dataset_name)}__{split}.json"
 
 
 def _normalize_entry(item: dict[str, Any]) -> dict[str, str] | None:
     """
     将原始数据集条目归一化为主流程可消费的最小结构。
 
-    SWE-bench 系列数据集没有 language 字段（默认全是 Python），所以这里只在
+    SWE-bench 系列没有 language 字段（默认全是 Python），所以这里只在
     字段存在时做过滤；对自建 Parquet 才会真正生效。
     """
     lang = str(item.get("language", "")).strip().lower()
@@ -64,9 +73,9 @@ def _normalize_entry(item: dict[str, Any]) -> dict[str, str] | None:
     }
 
 
-def _load_from_huggingface() -> list[dict[str, Any]]:
-    logger.info("Loading dataset from Hugging Face: %s [%s]", HF_DATASET_NAME, HF_DATASET_SPLIT)
-    ds = load_dataset(HF_DATASET_NAME, split=HF_DATASET_SPLIT)
+def _load_from_huggingface(dataset_name: str, split: str) -> list[dict[str, Any]]:
+    logger.info("Loading dataset from Hugging Face: %s [%s]", dataset_name, split)
+    ds = load_dataset(dataset_name, split=split)
     return [dict(item) for item in ds]
 
 
@@ -76,51 +85,74 @@ def _load_from_local_parquet() -> list[dict[str, Any]]:
     return [dict(item) for item in ds]
 
 
-def fetch_and_clean_dataset(force_refresh: bool = False) -> list[dict[str, Any]]:
+def fetch_and_clean_dataset(
+    force_refresh: bool = False,
+    dataset_name: str | None = None,
+    split: str | None = None,
+) -> list[dict[str, Any]]:
     """
-    优先级：缓存（issues_commits.json） → Hugging Face → 本地 Parquet。
+    优先级：data/<dataset>__<split>.json 缓存 → Hugging Face → 本地 Parquet。
     force_refresh=True 时跳过缓存，重新拉取并覆盖。
     """
-    if ISSUES_FILE.exists() and not force_refresh:
-        logger.info("Using cached dataset at %s", ISSUES_FILE)
-        with ISSUES_FILE.open("r", encoding="utf-8") as f:
+    name = dataset_name or HF_DATASET_NAME
+    sp = split or HF_DATASET_SPLIT
+    cache = _cache_path(name, sp)
+
+    if cache.exists() and not force_refresh:
+        logger.info("Using cached dataset at %s", cache)
+        with cache.open("r", encoding="utf-8") as f:
             return json.load(f)
 
     raw_items: list[dict[str, Any]]
     try:
-        raw_items = _load_from_huggingface()
+        raw_items = _load_from_huggingface(name, sp)
     except Exception as e:
         logger.warning("Hugging Face load failed (%s); falling back to local Parquet.", e)
         raw_items = _load_from_local_parquet()
 
-    processed_data: list[dict[str, Any]] = []
+    processed: list[dict[str, Any]] = []
     skipped = 0
     for item in raw_items:
         normalized = _normalize_entry(item)
         if normalized is None:
             skipped += 1
             continue
-        processed_data.append(normalized)
+        processed.append(normalized)
 
-    if not processed_data:
+    if not processed:
         raise ValueError("No valid Python entries found in dataset.")
 
-    with ISSUES_FILE.open("w", encoding="utf-8") as f:
-        json.dump(processed_data, f, indent=2, ensure_ascii=False)
+    with cache.open("w", encoding="utf-8") as f:
+        json.dump(processed, f, indent=2, ensure_ascii=False)
 
     logger.info(
-        "Dataset normalized: total=%s, skipped=%s, kept=%s",
-        len(raw_items),
-        skipped,
-        len(processed_data),
+        "Dataset cached to %s: total=%s, skipped=%s, kept=%s",
+        cache, len(raw_items), skipped, len(processed),
     )
-    return processed_data
+    return processed
 
 
-def download_and_process_dataset(force_refresh: bool = False) -> list[dict[str, Any]]:
-    return fetch_and_clean_dataset(force_refresh=force_refresh)
+def filter_by_repo(entries: list[dict[str, Any]], repo: str) -> list[dict[str, Any]]:
+    """按 repo 全名过滤，例如 'sympy/sympy'。大小写不敏感。"""
+    target = repo.strip().lower()
+    if not target:
+        return entries
+    out = [e for e in entries if str(e.get("repo", "")).lower() == target]
+    logger.info("Filter repo=%s: %s -> %s entries", repo, len(entries), len(out))
+    return out
+
+
+def list_repos(entries: list[dict[str, Any]]) -> dict[str, int]:
+    """返回数据集中每个 repo 的 instance 数，用于 --list-repos。"""
+    counts: dict[str, int] = {}
+    for e in entries:
+        r = str(e.get("repo", ""))
+        counts[r] = counts.get(r, 0) + 1
+    return dict(sorted(counts.items(), key=lambda kv: -kv[1]))
 
 
 if __name__ == "__main__":
     data = fetch_and_clean_dataset()
-    logger.info("Success! Total Python records extracted: %s", len(data))
+    logger.info("Total Python records: %s", len(data))
+    for repo, n in list_repos(data).items():
+        logger.info("  %-40s %d", repo, n)

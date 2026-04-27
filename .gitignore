@@ -1,4 +1,8 @@
 /repos/
 /java-swe-bench/repos
+/python-swe-bench/repos
+/python-swe-bench/experiment_run.log
+/python-swe-bench/issues_commits.json
+/python-swe-bench/data/
 __pycache__/
 *.pyc

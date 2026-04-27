@@ -2,15 +2,15 @@
 将 LLM 生成的测试代码包装成 SWT-Bench / SWE-bench harness 可消费的
 unified diff（git patch），以及把 predictions 写成 JSONL。
 
-历史逻辑（直接落盘到 repo_dir）已不需要——SWT-Bench 在 Docker 内
-处理 clone / apply / run，宿主机只负责生产 predictions。
+每条 instance 还会落一个"初始档"到 results/instances/<instance_id>.json，
+里面包含原始缺陷报告 + 生成测试代码（执行结果在 collect 阶段补齐）。
 """
 
 import json
 from pathlib import Path
 from typing import Any, Iterable
 
-from constants import logger
+from constants import INSTANCES_DIR, logger
 
 
 def _normalize_rel_path(path_hint: str | None, file_name: str | None, instance_id: str) -> str:
@@ -37,7 +37,6 @@ def build_new_file_patch(rel_path: str, file_content: str) -> str:
     if not file_content.endswith("\n"):
         file_content += "\n"
     lines = file_content.split("\n")
-    # 末尾的 split 会产出一个空字符串元素（因为以 \n 结尾），剔除
     if lines and lines[-1] == "":
         lines = lines[:-1]
     body = "".join(f"+{l}\n" for l in lines)
@@ -69,16 +68,71 @@ def build_prediction(
     }
     if full_output is not None:
         record["full_output"] = full_output
+    record["_test_rel_path"] = rel_path
+    record["_test_code"] = test_code
     return record
 
 
+def write_initial_instance_file(entry: dict[str, Any], record: dict[str, Any]) -> Path:
+    """
+    在 results/instances/<instance_id>.json 落一个初始档：
+    包含原始缺陷报告 + 生成的测试代码 + 待补齐的执行结果占位。
+    collect 阶段会把执行输出和 reproduction_status 合并进来。
+    """
+    instance_id = entry["instance_id"]
+    out = {
+        "instance_id": instance_id,
+        "repo": entry["repo"],
+        "base_commit": entry["base_commit"],
+        "reproduction_status": "pending",
+        "original_bug_report": {
+            "problem_description": entry.get("problem_description", ""),
+            "hints_text": entry.get("hints_text", ""),
+            "fail_to_pass": entry.get("fail_to_pass", []),
+        },
+        "generated_test": {
+            "method_name": record["model_name_or_path"],
+            "file_path": record.get("_test_rel_path"),
+            "code": record.get("_test_code"),
+            "patch": record["model_patch"],
+            "raw_llm_output": record.get("full_output"),
+        },
+        "execution": None,
+    }
+    INSTANCES_DIR.mkdir(parents=True, exist_ok=True)
+    path = INSTANCES_DIR / f"{instance_id}.json"
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(out, f, indent=2, ensure_ascii=False)
+    return path
+
+
 def write_predictions_jsonl(records: Iterable[dict[str, Any]], output_path: Path) -> int:
-    """落盘 predictions.jsonl，返回写入条数。"""
+    """落盘 predictions.jsonl，返回写入条数。剥离内部 _test_* 字段。"""
     count = 0
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as f:
         for rec in records:
-            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            clean = {k: v for k, v in rec.items() if not k.startswith("_")}
+            f.write(json.dumps(clean, ensure_ascii=False) + "\n")
             count += 1
     logger.info("Wrote %s predictions to %s", count, output_path)
     return count
+
+
+def load_initial_records() -> dict[str, dict[str, Any]]:
+    """读取 results/instances/ 下所有初始档，给 collect 阶段查 LLM 测试用。"""
+    out: dict[str, dict[str, Any]] = {}
+    if not INSTANCES_DIR.exists():
+        return out
+    for p in INSTANCES_DIR.glob("*.json"):
+        try:
+            with p.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+            iid = data.get("instance_id") or p.stem
+            out[iid] = {
+                "model_patch": data.get("generated_test", {}).get("patch", ""),
+                "full_output": data.get("generated_test", {}).get("raw_llm_output"),
+            }
+        except Exception:
+            continue
+    return out
