@@ -1,2 +1,4 @@
 /repos/
 /java-swe-bench/repos
+__pycache__/
+*.pyc
