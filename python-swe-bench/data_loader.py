@@ -1,9 +1,8 @@
 """
 Dataset loader for python-swe-bench.
 
-主路径：从 Hugging Face 拉 SWE-bench / SWT-Bench 数据集（默认
-princeton-nlp/SWE-bench_Lite），缓存到 data/<dataset>.json。
-回退路径：HF 不可用时改读本地 Parquet。
+从 Hugging Face 拉 SWE-bench / SWT-Bench 数据集（默认
+princeton-nlp/SWE-bench_Lite），缓存到 data/<dataset>__<split>.json。
 
 支持按 repo 过滤（--repo sympy/sympy），方便针对单仓库快速验证。
 """
@@ -18,7 +17,6 @@ from constants import (
     DATA_DIR,
     HF_DATASET_NAME,
     HF_DATASET_SPLIT,
-    LOCAL_PARQUET_PATH,
     logger,
 )
 
@@ -79,19 +77,13 @@ def _load_from_huggingface(dataset_name: str, split: str) -> list[dict[str, Any]
     return [dict(item) for item in ds]
 
 
-def _load_from_local_parquet() -> list[dict[str, Any]]:
-    logger.info("Loading dataset from local Parquet: %s", LOCAL_PARQUET_PATH)
-    ds = load_dataset("parquet", data_files={"test": LOCAL_PARQUET_PATH}, split="test")
-    return [dict(item) for item in ds]
-
-
 def fetch_and_clean_dataset(
     force_refresh: bool = False,
     dataset_name: str | None = None,
     split: str | None = None,
 ) -> list[dict[str, Any]]:
     """
-    优先级：data/<dataset>__<split>.json 缓存 → Hugging Face → 本地 Parquet。
+    优先级：data/<dataset>__<split>.json 缓存 → Hugging Face。
     force_refresh=True 时跳过缓存，重新拉取并覆盖。
     """
     name = dataset_name or HF_DATASET_NAME
@@ -103,12 +95,7 @@ def fetch_and_clean_dataset(
         with cache.open("r", encoding="utf-8") as f:
             return json.load(f)
 
-    raw_items: list[dict[str, Any]]
-    try:
-        raw_items = _load_from_huggingface(name, sp)
-    except Exception as e:
-        logger.warning("Hugging Face load failed (%s); falling back to local Parquet.", e)
-        raw_items = _load_from_local_parquet()
+    raw_items = _load_from_huggingface(name, sp)
 
     processed: list[dict[str, Any]] = []
     skipped = 0

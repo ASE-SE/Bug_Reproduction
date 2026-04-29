@@ -19,16 +19,11 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 INSTANCES_DIR.mkdir(parents=True, exist_ok=True)
 
-# 数据集配置：优先从 Hugging Face 拉 SWE-bench / SWT-Bench 标准数据集，
-# 缓存到 data/<dataset>.json；离线/失败时回退到本地 Parquet。
-# HF 数据集的 instance_id 与 SWT-Bench harness 的 Docker 镜像一一对应，
-# 是后续接入评测的前提。
+# 数据集配置：从 Hugging Face 拉 SWE-bench / SWT-Bench 标准数据集，
+# 缓存到 data/<dataset>__<split>.json。HF 数据集的 instance_id 与
+# SWT-Bench harness 的 Docker 镜像一一对应，是后续接入评测的前提。
 HF_DATASET_NAME: Final[str] = os.getenv("HF_DATASET_NAME", "princeton-nlp/SWE-bench_Lite")
 HF_DATASET_SPLIT: Final[str] = os.getenv("HF_DATASET_SPLIT", "test")
-LOCAL_PARQUET_PATH: Final[str] = os.getenv(
-    "LOCAL_PARQUET_PATH",
-    "/root/bug-report2-test-cases2/data/test-00000-of-00001.parquet",
-)
 
 # SWT-Bench predictions 中标识本方法的名字，会用于 harness 输出目录命名
 METHOD_NAME: Final[str] = os.getenv("METHOD_NAME", "llm-trigger-test")

@@ -1,8 +1,0 @@
-{
-  "instance_id": "mockito__mockito-3173",
-  "repo": "mockito/mockito",
-  "status": "pipeline_failed",
-  "failed_at_step": "clone_and_checkout",
-  "repair_attempts": 0,
-  "error_message": "Failed to clone or checkout the repository."
-}

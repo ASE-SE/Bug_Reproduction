@@ -1,8 +1,0 @@
-{
-  "instance_id": "elastic__logstash-16482",
-  "repo": "elastic/logstash",
-  "status": "pipeline_failed",
-  "failed_at_step": "llm_generation",
-  "repair_attempts": 3,
-  "error_message": "LLM Generation Failed: HTTP 400: {\"error\":{\"message\":\"Access denied, please make sure your account is in good standing. For details, "
-}
